@@ -38,3 +38,6 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 gem 'spreadsheet'
+
+gem 'devise'
+gem 'cancan'
