@@ -1,25 +1,11 @@
-<h1>Listing members</h1>
+<h1>Members</h1>
+[<%= mail_to @members.map(&:email).join(','), "Mail All", :cc => "goetz.pfeiffer@nuigalway.ie" %>]
 
 <table>
-  <tr>
-    <th>Number</th>
-    <th>Title</th>
-    <th>Surname</th>
-    <th>Forename</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
 <% @members.each do |member| %>
   <tr>
-    <td><%= member.number %></td>
-    <td><%= member.title %></td>
-    <td><%= member.surname %></td>
-    <td><%= member.forename %></td>
-    <td><%= link_to 'Show', member %></td>
-    <td><%= link_to 'Edit', edit_member_path(member) %></td>
-    <td><%= link_to 'Destroy', member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td align="right"><%= member.number %></td>
+    <td><%= link_to member.name, member %></td>
   </tr>
 <% end %>
 </table>

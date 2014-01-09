@@ -2,33 +2,22 @@
 
 <p>
   <%= @member.number %>
+  (<%= @member.status %>)
 </p>
 
 <h2>
-  <%= @member.name %>
+  <%= @member.fullname %>
 </h2>
 
 <p>
-<pre>
-  <%= @member.address %>
-</pre>
+  <code><%= @member.email %></code>
 </p>
 
-<p>
-  <b>Email:</b>
-  <%= @member.email %>
-</p>
+<pre style=""><%= @member.address %></pre>
 
-<p>
-  <b>Status:</b>
-  <%= @member.status %>
-</p>
-
-<p>
-  <b>Comment:</b>
-  <%= @member.comment %>
-</p>
+<p><%= @member.comment %></p>
 
 
 <%= link_to 'Edit', edit_member_path(@member) %> |
+<%= link_to 'Destroy', @member, method: :delete, data: { confirm: 'Are you sure?' } %> |
 <%= link_to 'Back', members_path %>
