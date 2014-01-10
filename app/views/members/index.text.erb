@@ -1,0 +1,5 @@
+<% @members.each do |member| %>
+<% if member.email.present? %>
+<%= "#{member.email}, #{member.forename}, #{member.surname}" %>
+<% end %>
+<% end %>

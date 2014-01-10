@@ -6,6 +6,7 @@ class MembersController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
+      format.text # index.text.erb
       format.json { render json: @members }
     end
   end
