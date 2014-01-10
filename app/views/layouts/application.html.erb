@@ -7,8 +7,33 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div id="banner">
+Irish Mathematical Society
+</div>
+<div id="navigation">
+<div id="home">
+</div>
+<div id="login">
+  <% if user_signed_in? %>
+  <%= link_to current_user.email, edit_user_registration_path %> |
+  <%= link_to 'Sign out', destroy_user_session_path, :method => :delete, :confirm => "Sign out?" %>
+  <% else %>
+  <% end %>
+</div>
+</div>
+
+<div id="columns">
+<div id="side">
+<%= yield :side %>
+</div>
+<div id="container">
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
 
 <%= yield %>
+
+</div>
+</div>
 
 </body>
 </html>

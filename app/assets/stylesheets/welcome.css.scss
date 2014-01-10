@@ -1,3 +1,33 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#banner {
+    font: small-caps 60px/60px Verdana,"Helevetica",sans-serif;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#navigation {
+    background: rgb(255,255,204);
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    color: black;
+}
+
+#navigation #login {
+    a {
+	color: #0000FF;
+	text-decoration: none;
+    }
+    margin-left: 42em;
+    text-align: right;
+}
+
+#container {
+    margin-left: 17em;
+    padding-top: 4ex;
+    padding-left: 2em;
+}
