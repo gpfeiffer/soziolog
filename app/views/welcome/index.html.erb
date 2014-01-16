@@ -7,7 +7,10 @@
   From here you can access
   <ul>
     <li>
-      the <%= link_to 'members', members_path %> of the IMS ...
+      the <%= Member.count %> <%= link_to 'members', members_path %> of the IMS ...
+    </li>
+    <li>
+      the <%= Member.find_all_by_email("").count %> <%= link_to 'members', members_path(:email => "") %> without email.
     </li>
   </ul> 
 </p>

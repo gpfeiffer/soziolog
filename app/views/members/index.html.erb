@@ -1,3 +1,17 @@
+<% if @email %>
+<h1>Members without Email</h1>
+
+<table>
+<% @members.each do |member| %>
+  <tr>
+    <td align="right"><%= member.number %></td>
+    <td><%= link_to member.fullname, member %></td>
+    <td><%= member.address %></td>
+  </tr>
+<% end %>
+</table>
+
+<% else %>
 <h1>Members</h1>
 [<%= mail_to @members.map(&:email).join(','), "Mail All", :cc => "goetz.pfeiffer@nuigalway.ie" %>]
 
@@ -13,3 +27,4 @@
 <br />
 
 <%= link_to 'New Member', new_member_path %>
+<% end %>

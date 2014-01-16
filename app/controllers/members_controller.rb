@@ -2,7 +2,12 @@ class MembersController < ApplicationController
   # GET /members
   # GET /members.json
   def index
-    @members = Member.all
+    if params[:email] then
+      @members = Member.find_all_by_email(params[:email])
+      @email = params[:email]
+    else
+      @members = Member.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb
