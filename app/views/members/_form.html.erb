@@ -38,7 +38,7 @@
   </tr>
   <tr>
     <td align="right"><%= f.label :status %></td>
-    <td><%= f.text_field :status, :size => 40 %></td>
+    <td><%= f.select :status, Member::STATUSES.map { |k, v| [v, k] } %></td>
   </tr>
   <tr>
     <td align="right"><%= f.label :comment %></td>
