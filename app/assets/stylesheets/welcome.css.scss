@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #banner {
-    font: small-caps 60px/60px Verdana,"Helevetica",sans-serif;
+    font: small-caps 30px/30px Verdana,"Helevetica",sans-serif;
     padding-top: 10px;
     padding-bottom: 10px;
     font-weight: bold;
@@ -15,6 +15,15 @@
     border-top: 2px solid black;
     border-bottom: 2px solid black;
     color: black;
+}
+
+#navigation #home {
+  a {
+      color: #0000FF;
+      text-decoration: none;
+  }
+  float: left;
+  width: 41em;
 }
 
 #navigation #login {

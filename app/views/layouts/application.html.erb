@@ -11,7 +11,9 @@
 Irish Mathematical Society
 </div>
 <div id="navigation">
-<div id="home">
+<div id="home"> 
+<%= link_to 'Home', root_path %> |
+<%= link_to 'Members', members_path %> 
 </div>
 <div id="login">
   <% if user_signed_in? %>
@@ -27,8 +29,8 @@ Irish Mathematical Society
 <%= yield :side %>
 </div>
 <div id="container">
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<p id="notice"><%= notice %></p>
+<p id="alert"><%= alert %></p>
 
 <%= yield %>
 
