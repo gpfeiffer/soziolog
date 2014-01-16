@@ -1,5 +1,8 @@
+QUIET ADD IMS-MEMBERS DD=X IMPORT
+//X DD *
 <% @members.each do |member| %>
 <% if member.email.present? %>
-<%= "#{member.email}, #{member.forename}, #{member.surname}" %>
+<%= "%-40s %s" % [member.email, member.first_last] %>
 <% end %>
 <% end %>
+/*
