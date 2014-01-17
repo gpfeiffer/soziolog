@@ -1,5 +1,5 @@
 <% if @email %>
-MEMBERS WITHOUT EMAIL
+<%= @members.count %> IMS MEMBERS WITHOUT EMAIL
 
 <% @members.each do |member| %>
 <%= "%-6s %-27s %s" %  [member.number, member.fullname, member.address_line] %>
