@@ -3,7 +3,7 @@ class MembersController < ApplicationController
   # GET /members.json
   def index
     if params[:email] then
-      @members = Member.find_all_by_email(params[:email])
+      @members = Member.find_all_by_email(params[:email]).select { |x| x.status != "D" }
       @email = params[:email]
     else
       @members = Member.all
