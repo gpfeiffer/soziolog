@@ -12,6 +12,7 @@ class MembersController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.text # index.text.erb
+      format.xls { send_data Member.to_xls, content_type: 'application/vnd.ms-excel' }
       format.json { render json: @members }
     end
   end
