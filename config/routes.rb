@@ -5,7 +5,7 @@ Sociolog::Application.routes.draw do
     put 'users' => 'devise/registrations#update', :as => 'user_registration'
   end
 
-  resource :users
+  resources :users
 
   resources :members
 
