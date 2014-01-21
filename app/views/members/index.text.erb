@@ -1,10 +1,3 @@
-<% if @email %>
-<%= @members.count %> IMS MEMBERS WITHOUT EMAIL
-
-<% @members.each do |member| %>
-<%= "%-6s %-27s %s" %  [member.number, member.fullname, member.address_line] %>
-<% end %>
-<% else %>
 QUIET ADD IMS-MEMBERS DD=X IMPORT
 //X DD *
 <% @members.each do |member| %>
@@ -13,4 +6,3 @@ QUIET ADD IMS-MEMBERS DD=X IMPORT
 <% end %>
 <% end %>
 /*
-<% end %>

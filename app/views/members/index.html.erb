@@ -1,17 +1,3 @@
-<% if @email %>
-<h1>Members without Email</h1>
-
-<table>
-<% @members.each do |member| %>
-  <tr>
-    <td align="right"><%= member.number %></td>
-    <td><%= link_to member.fullname, member %></td>
-    <td><%= member.address %></td>
-  </tr>
-<% end %>
-</table>
-
-<% else %>
 <h1>Members</h1>
 
 <% members_by_first = @members.group_by { |m| m.surname[0] } %>
@@ -21,8 +7,6 @@
 <%= link_to(key, :anchor => key) %> |
 <% end %>
 </p>
-
-[<%= mail_to @members.map(&:email).join(','), "Mail All", :cc => "goetz.pfeiffer@nuigalway.ie" %>]
 
 <table>
 <% members_by_first.each do |key, members| %>
@@ -38,5 +22,4 @@
 
 <br />
 
-<%= link_to 'New Member', new_member_path %>
-<% end %>
+<%= link_to('New Member', new_member_path) if can? :create, Member %>
