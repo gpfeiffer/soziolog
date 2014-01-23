@@ -1,34 +1,20 @@
-<h1>Listing conferences</h1>
+<h1>Conferences</h1>
 
-<table>
-  <tr>
-    <th>Call</th>
-    <th>Name</th>
-    <th>Host</th>
-    <th>Date</th>
-    <th>Applicant</th>
-    <th>Description</th>
-    <th>Funding</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @conferences.each do |conference| %>
-  <tr>
-    <td><%= conference.call %></td>
-    <td><%= conference.name %></td>
-    <td><%= conference.host %></td>
-    <td><%= conference.dates %></td>
-    <td><%= conference.applicant %></td>
-    <td><%= conference.description %></td>
-    <td><%= conference.funding %></td>
-    <td><%= link_to 'Show', conference %></td>
-    <td><%= link_to 'Edit', edit_conference_path(conference) %></td>
-    <td><%= link_to 'Destroy', conference, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+<% @conferences.each.with_index(1) do |conference, index| %>
+<h4>
+  <%= index %>.
+  <%= link_to conference.name, conference %>
+  (<%= conference.host %>, <%= conference.dates %>)
+</h4>
+Applicant:    <%= conference.applicant %>
+<p>    
+  <%= conference.description.truncate(400) %>
+  <%= link_to '[more ...]', conference %>
+</p>
+Funding:    <%= conference.funding %>
+<hr />
 <% end %>
-</table>
+
 
 <br />
 
