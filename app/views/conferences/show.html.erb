@@ -30,6 +30,10 @@
   <%= markdown @conference.description %>
 </div>
 
+<% if @conference.document_url %>
+  <b>&rsaquo;</b> <%= link_to 'Additional Documentation', root_path + "conferences/" + @conference.document_url %>
+<% end %>
+
 <p>
   <b>Funding:</b>
   <%= @conference.funding %>
