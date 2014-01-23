@@ -27,6 +27,11 @@
 </p>
 
 
+<% end %>
+<% if can? :edit, @member %>
 <%= link_to 'Edit', edit_conference_path(@conference) %> |
+<% end %>
+<% if can? :destroy, @member %>
 <%= link_to 'Destroy', @conference, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<% end %>
 <%= link_to 'Back', conferences_path %>

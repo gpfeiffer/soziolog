@@ -18,4 +18,4 @@ Funding:    <%= conference.funding %>
 
 <br />
 
-<%= link_to 'New Conference', new_conference_path %>
+<%= link_to 'New Conference', new_conference_path if can? :create, Member %>
