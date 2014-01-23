@@ -3,6 +3,7 @@ class ConferencesController < ApplicationController
   # GET /conferences.json
   def index
     @conferences = Conference.all
+    @call = Conference.first.call or "-"
 
     respond_to do |format|
       format.html # index.html.erb

@@ -1,6 +1,9 @@
-<h1>Conferences</h1>
+<h1>Conference Support</h1>
+
+<b>Call:</b> <%= @call %>
 
 <% @conferences.each.with_index(1) do |conference, index| %>
+<hr />
 <h3>
   <%= index %>.
   <%= link_to conference.name, conference %>
@@ -12,10 +15,9 @@
 <%= link_to '[more...]', conference %>
 </div>
 <b>Funding:</b>    <%= conference.funding %>
-<hr />
 <% end %>
 
 
-<br />
+<hr />
 
 <%= link_to 'New Conference', new_conference_path %>
