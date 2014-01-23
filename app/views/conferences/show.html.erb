@@ -39,8 +39,6 @@
   <%= @conference.funding %>
 </p>
 
-
-<% end %>
 <% if can? :edit, @member %>
 <%= link_to 'Edit', edit_conference_path(@conference) %> |
 <% end %>
