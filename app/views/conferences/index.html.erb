@@ -1,21 +1,23 @@
-<h1>Conferences</h1>
+<h1>Conference Support</h1>
+
+<b>Call:</b> <%= @call %>
 
 <% @conferences.each.with_index(1) do |conference, index| %>
-<h4>
+<hr />
+<h3>
   <%= index %>.
   <%= link_to conference.name, conference %>
   (<%= conference.host %>, <%= conference.dates %>)
-</h4>
-Applicant:    <%= conference.applicant %>
-<p>    
-  <%= markdown conference.description.truncate(400) %>
-  <%= link_to '[more ...]', conference %>
-</p>
-Funding:    <%= conference.funding %>
-<hr />
+</h3>
+<b>Applicant:</b>    <%= conference.applicant %>
+<div style="background-color: #E6F5F5;">
+  <%= conference.description.truncate(400, :separator => ' ', :omission => ' ') %>
+<%= link_to '[more...]', conference %>
+</div>
+<b>Funding:</b>    <%= conference.funding %>
 <% end %>
 
 
-<br />
+<hr />
 
 <%= link_to 'New Conference', new_conference_path if can? :create, Member %>

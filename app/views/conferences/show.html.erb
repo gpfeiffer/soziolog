@@ -1,3 +1,12 @@
+<% content_for :side do %>
+<h3>Conference Support</h3>
+  <ol>
+    <% Conference.all.each do |c| %>
+    <li><%= link_to_unless_current c.name, c %></li>
+    <% end %>
+  </ol>
+<% end %>
+
 <h3>
   <%= @conference.call %>
 </h3>
@@ -16,10 +25,14 @@
   <%= @conference.applicant %>
 </p>
 
-<p>
+<div style="background-color: #E6F5F5;">
   <b>Description:</b>
   <%= markdown @conference.description %>
-</p>
+</div>
+
+<% if @conference.document_url %>
+  <b>&rsaquo;</b> <%= link_to 'Additional Documentation', root_path + "conferences/" + @conference.document_url %>
+<% end %>
 
 <p>
   <b>Funding:</b>
