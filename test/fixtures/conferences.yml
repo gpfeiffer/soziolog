@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  call: MyString
+  name: MyString
+  host: MyString
+  date: 2014-01-23
+  applicant: MyString
+  description: MyText
+  funding: 1
+
+two:
+  call: MyString
+  name: MyString
+  host: MyString
+  date: 2014-01-23
+  applicant: MyString
+  description: MyText
+  funding: 1
