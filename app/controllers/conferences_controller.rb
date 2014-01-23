@@ -25,6 +25,7 @@ class ConferencesController < ApplicationController
   # GET /conferences/new.json
   def new
     @conference = Conference.new
+    @conference.length = 1
 
     respond_to do |format|
       format.html # new.html.erb
