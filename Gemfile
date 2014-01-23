@@ -41,3 +41,5 @@ gem 'spreadsheet'
 
 gem 'devise'
 gem 'cancan'
+
+gem 'kramdown'
