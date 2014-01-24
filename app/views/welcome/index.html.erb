@@ -6,11 +6,15 @@
 <p>
   From here you can access
   <ul>
+<% if can? :read, Member %>
     <li>
       the <%= Member.count %> <%= link_to 'members', members_path %> of the IMS ...
     </li>
+<% end %>
+<% if can? :read, Conference %>
     <li>
       the <%= Conference.count %> <%= link_to 'conferences', conferences_path %> receiving funding from the IMS ...
     </li>
+<% end %>
   </ul> 
 </p>
