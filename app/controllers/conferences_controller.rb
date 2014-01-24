@@ -1,8 +1,9 @@
 class ConferencesController < ApplicationController
+  load_and_authorize_resource
+
   # GET /conferences
   # GET /conferences.json
   def index
-    @conferences = Conference.all
     @call = Conference.first.call or "-"
 
     respond_to do |format|
@@ -14,8 +15,6 @@ class ConferencesController < ApplicationController
   # GET /conferences/1
   # GET /conferences/1.json
   def show
-    @conference = Conference.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @conference }
@@ -25,7 +24,6 @@ class ConferencesController < ApplicationController
   # GET /conferences/new
   # GET /conferences/new.json
   def new
-    @conference = Conference.new
     @conference.length = 1
 
     respond_to do |format|
@@ -36,14 +34,11 @@ class ConferencesController < ApplicationController
 
   # GET /conferences/1/edit
   def edit
-    @conference = Conference.find(params[:id])
   end
 
   # POST /conferences
   # POST /conferences.json
   def create
-    @conference = Conference.new(params[:conference])
-
     respond_to do |format|
       if @conference.save
         format.html { redirect_to @conference, notice: 'Conference was successfully created.' }
@@ -58,8 +53,6 @@ class ConferencesController < ApplicationController
   # PUT /conferences/1
   # PUT /conferences/1.json
   def update
-    @conference = Conference.find(params[:id])
-
     respond_to do |format|
       if @conference.update_attributes(params[:conference])
         format.html { redirect_to @conference, notice: 'Conference was successfully updated.' }
@@ -74,7 +67,6 @@ class ConferencesController < ApplicationController
   # DELETE /conferences/1
   # DELETE /conferences/1.json
   def destroy
-    @conference = Conference.find(params[:id])
     @conference.destroy
 
     respond_to do |format|
