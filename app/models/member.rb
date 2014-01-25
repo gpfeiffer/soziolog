@@ -43,14 +43,16 @@ class Member < ActiveRecord::Base
     address.gsub(/\r?\n/, " ")
   end
 
+  def address_lines
+    postal = address.split(/\r?\n/)
+    (6 - postal.size).times do
+      postal << ""
+    end
+    postal[0, 6]
+  end
+
   def to_a
-      row = [ number, title, surname, forename ]
-      postal = address.split(/\r?\n/)
-      (6 - postal.size).times do
-        postal << ""
-      end
-      row.concat postal[0, 6]
-      row.concat [ email, status, comment ]
+    [ number, title, surname, forename ].concat(address_lines).concat [ email, status, comment ]
   end
 
   def self.to_xls
