@@ -29,7 +29,9 @@ Irish Mathematical Society
   <% end %>
 </div>
 </div>
-
+<div id="date" align="right">
+<%= Time.now.strftime("%A, %B %-d,  %Y. %H:%M:%S.") %>
+</div>
 <div id="columns">
 <div id="side">
 <%= yield :side %>
