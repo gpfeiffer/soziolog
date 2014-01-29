@@ -10,6 +10,7 @@
   (<%= conference.host %>, <%= conference.dates %>)
 </h3>
 <b>Applicant:</b>    <%= conference.applicant %>
+  (received on:  <%= conference.received_on %>)
 <div style="background-color: #E6F5F5;">
   <%= conference.description.truncate(400, :separator => ' ', :omission => ' ') %>
 <%= link_to '[more...]', conference %>

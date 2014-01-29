@@ -36,6 +36,10 @@
     <%= f.text_field :applicant %>
   </div>
   <div class="field">
+    <%= f.label :received_on %><br />
+    <%= f.date_select :received_on %>
+  </div>
+  <div class="field">
     <%= f.label :description %><br />
     <%= f.text_area :description, :cols => 80 %>
   </div>
