@@ -31,7 +31,7 @@
   <%= markdown @conference.description %>
 </div>
 
-<% if @conference.document_url %>
+<% if @conference.document_url.present? %>
   <b>&rsaquo;</b> <%= link_to 'Additional Documentation', root_path + "conferences/" + @conference.document_url %>
 <% end %>
 
