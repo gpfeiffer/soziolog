@@ -4,5 +4,10 @@
   Email: <code><%= @user.email %></code>
 </p>
 
+<% if can? :edit, @user %>
 <%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+<% if can? :destroy, @user %>
+<%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<% end %>
+<%= link_to 'Back', users_path %>
