@@ -4,11 +4,13 @@
 
 <% @conferences.each.with_index(1) do |conference, index| %>
 <hr />
-<h3>
+<h2 style="display: inline;">
   <%= index %>.
   <%= link_to conference.name, conference %>
-  (<%= conference.host %>, <%= conference.dates %>)
-</h3>
+</h2>
+<br />
+<%= conference.host %>, <%= conference.dates %>
+<br />
 <b>Applicant:</b>    <%= conference.applicant %>
   (received on:  <%= conference.received_on %>)
 <div style="background-color: #E6F5F5;">
