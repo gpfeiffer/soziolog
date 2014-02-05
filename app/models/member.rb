@@ -1,5 +1,5 @@
 class Member < ActiveRecord::Base
-  attr_accessible :address, :comment, :email, :forename, :number, :status, :surname, :title
+  attr_accessible :address, :bulletin, :comment, :email, :forename, :number, :status, :surname, :title
 
   STATUSES = {
     "O" => "ordinary",
@@ -25,7 +25,11 @@ class Member < ActiveRecord::Base
 
   validates :status, :presence => true, :inclusion => STATUSES.keys
 
-  COLUMNS = %w{n Title Surname Forename Address0 Address1 Address2 Address3 Address4 Address5 Email Status}
+  BULLETIN = %w{ yes no }
+
+  validates :bulletin, :inclusion => BULLETIN
+
+  COLUMNS = %w{n Title Surname Forename Address0 Address1 Address2 Address3 Address4 Address5 Email Status Bulletin}
 
   def fullname
     "%s %s %s" % [title, forename, surname]
@@ -52,7 +56,7 @@ class Member < ActiveRecord::Base
   end
 
   def to_a
-    [ number, title, surname, forename ].concat(address_lines).concat [ email, status, comment ]
+    [ number, title, surname, forename ].concat(address_lines).concat [ email, status, bulletin, comment ]
   end
 
   def self.to_xls

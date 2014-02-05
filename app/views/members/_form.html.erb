@@ -41,6 +41,10 @@
     <td><%= f.select :status, Member::STATUSES.map { |k, v| [v, k] } %></td>
   </tr>
   <tr>
+    <td align="right"><%= f.label :bulletin %></td>
+    <td><%= f.select :bulletin, Member::BULLETIN, :include_blank => true %></td>
+  </tr>
+  <tr>
     <td align="right"><%= f.label :comment %></td>
     <td><%= f.text_area :comment, :rows => 7, :cols => 40 %></td>
   </tr>
