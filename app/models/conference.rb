@@ -1,5 +1,5 @@
 class Conference < ActiveRecord::Base
-  attr_accessible :applicant, :call, :date, :description, :document_url, :funding, :host, :length, :name, :received_on
+  attr_accessible :applicant, :call, :date, :description, :document_url, :email, :funding, :host, :length, :name, :received_on
 
   def first_day 
     date
