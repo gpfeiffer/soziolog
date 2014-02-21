@@ -22,8 +22,7 @@
 
 <p>
   <b>Applicant:</b>
-  <%= @conference.applicant %>
-  (<code><%= @conference.email %></code>),
+  <%=  mail_to @conference.email, @conference.applicant %>,
   received on: <%= @conference.received_on %>.
 </p>
 
@@ -40,10 +39,17 @@
   <%= @conference.funding %>
 </p>
 
-<% if can? :edit, @member %>
+<% if can? :edit, @conference %>
 <%= link_to 'Edit', edit_conference_path(@conference) %> |
 <% end %>
-<% if can? :destroy, @member %>
+<% if can? :destroy, @conference %>
+<% if @conference.funding %>
+<% if @conference.funding > 0 %>
+<%= mail_to @conference.email, 'Approve', :subject => 'Re: IMS conference funding', :cc => 'ims-committee@maths.tcd.ie', :body => @conference.approval_letter %> |
+<% else %>
+<%= mail_to @conference.email, 'Reject', :subject => 'Re: IMS conference funding', :cc => 'ims-committee@maths.tcd.ie', :body => @conference.rejection_letter %> |
+<% end %>
+<% end %>
 <%= link_to 'Destroy', @conference, method: :delete, data: { confirm: 'Are you sure?' } %> |
 <% end %>
 <%= link_to 'Back', conferences_path %>
