@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140205090830) do
+ActiveRecord::Schema.define(:version => 20140221125121) do
 
   create_table "conferences", :force => true do |t|
     t.string   "call"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20140205090830) do
     t.integer  "length"
     t.string   "document_url"
     t.date     "received_on"
+    t.string   "email"
   end
 
   create_table "members", :force => true do |t|
