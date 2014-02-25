@@ -9,16 +9,17 @@
 </p>
 
 <table>
-<% members_by_first.each do |key, members| %>
-<% members.each do |member| %>
-  <tr>
-    <td align="right"><%= member.number %></td>
-    <td><%= link_to member.name, member %></td>
-    <td style="font-family: monospace;"><%= mail_to member.email, member.email, :style => "text-decoration: none;" %></td>
-    <td><%= link_to("", {}, :name => key) %></td>
-  </tr>
-<% end %>
-<% end %>
+  <% members_by_first.each do |key, members| %>
+    <% members.each do |member| %>
+      <tr>
+        <td align="right"><%= member.number %></td>
+        <td><%= member.bulletin %></td>
+        <td><%= link_to member.name, member %></td>
+        <td style="font-family: monospace;"><%= mail_to member.email, member.email, :style => "text-decoration: none;" %></td>
+        <td><%= link_to("", {}, :name => key) %></td>
+      </tr>
+    <% end %>
+  <% end %>
 </table>
 
 <br />
