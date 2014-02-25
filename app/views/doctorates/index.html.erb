@@ -1,3 +1,18 @@
+<% @doctorates.group_by(&:university).each do |university, doctorates_by_uni| %>
+<h2><%= university %></h2>
+<% doctorates_by_uni.sort_by! { |d| d.year || 0 }.group_by(&:year).each do |year, doctorates| %>
+<h3><%= year %></h3>
+<ul>
+<% doctorates.each do |doctorate| %>
+<li>
+<%= link_to doctorate.last_first, doctorate %>
+(<%= doctorate.university %>)
+</li>
+<% end %>
+</ul>
+<% end %>
+<% end %>
+
 <h1>Listing doctorates</h1>
 
 <table>
