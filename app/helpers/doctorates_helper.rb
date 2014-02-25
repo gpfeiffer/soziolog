@@ -1,0 +1,2 @@
+module DoctoratesHelper
+end

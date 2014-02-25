@@ -1,0 +1,37 @@
+<h1>Listing doctorates</h1>
+
+<table>
+  <tr>
+    <th>First</th>
+    <th>Last</th>
+    <th>University</th>
+    <th>Title</th>
+    <th>Year</th>
+    <th>Advisor</th>
+    <th>Thesis</th>
+    <th>Genealogy</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @doctorates.each do |doctorate| %>
+  <tr>
+    <td><%= doctorate.first %></td>
+    <td><%= doctorate.last %></td>
+    <td><%= doctorate.university %></td>
+    <td><%= doctorate.title %></td>
+    <td><%= doctorate.year %></td>
+    <td><%= doctorate.advisor %></td>
+    <td><%= doctorate.thesis %></td>
+    <td><%= doctorate.genealogy_id %></td>
+    <td><%= link_to 'Show', doctorate %></td>
+    <td><%= link_to 'Edit', edit_doctorate_path(doctorate) %></td>
+    <td><%= link_to 'Destroy', doctorate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Doctorate', new_doctorate_path %>

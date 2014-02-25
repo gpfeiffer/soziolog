@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140221125121) do
+ActiveRecord::Schema.define(:version => 20140225105405) do
 
   create_table "conferences", :force => true do |t|
     t.string   "call"
@@ -27,6 +27,19 @@ ActiveRecord::Schema.define(:version => 20140221125121) do
     t.string   "document_url"
     t.date     "received_on"
     t.string   "email"
+  end
+
+  create_table "doctorates", :force => true do |t|
+    t.string   "first"
+    t.string   "last"
+    t.string   "university"
+    t.string   "title"
+    t.integer  "year"
+    t.string   "advisor"
+    t.string   "thesis"
+    t.integer  "genealogy_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "members", :force => true do |t|

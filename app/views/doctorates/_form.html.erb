@@ -1,0 +1,49 @@
+<%= form_for(@doctorate) do |f| %>
+  <% if @doctorate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@doctorate.errors.count, "error") %> prohibited this doctorate from being saved:</h2>
+
+      <ul>
+      <% @doctorate.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :first %><br />
+    <%= f.text_field :first %>
+  </div>
+  <div class="field">
+    <%= f.label :last %><br />
+    <%= f.text_field :last %>
+  </div>
+  <div class="field">
+    <%= f.label :university %><br />
+    <%= f.text_field :university %>
+  </div>
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :year %><br />
+    <%= f.number_field :year %>
+  </div>
+  <div class="field">
+    <%= f.label :advisor %><br />
+    <%= f.text_field :advisor %>
+  </div>
+  <div class="field">
+    <%= f.label :thesis %><br />
+    <%= f.text_field :thesis %>
+  </div>
+  <div class="field">
+    <%= f.label :genealogy_id %><br />
+    <%= f.number_field :genealogy_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

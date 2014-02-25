@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>First:</b>
+  <%= @doctorate.first %>
+</p>
+
+<p>
+  <b>Last:</b>
+  <%= @doctorate.last %>
+</p>
+
+<p>
+  <b>University:</b>
+  <%= @doctorate.university %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @doctorate.title %>
+</p>
+
+<p>
+  <b>Year:</b>
+  <%= @doctorate.year %>
+</p>
+
+<p>
+  <b>Advisor:</b>
+  <%= @doctorate.advisor %>
+</p>
+
+<p>
+  <b>Thesis:</b>
+  <%= @doctorate.thesis %>
+</p>
+
+<p>
+  <b>Genealogy:</b>
+  <%= @doctorate.genealogy_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_doctorate_path(@doctorate) %> |
+<%= link_to 'Back', doctorates_path %>

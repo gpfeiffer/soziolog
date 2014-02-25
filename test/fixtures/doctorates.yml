@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  first: MyString
+  last: MyString
+  university: MyString
+  title: MyString
+  year: 1
+  advisor: MyString
+  thesis: MyString
+  genealogy_id: 1
+
+two:
+  first: MyString
+  last: MyString
+  university: MyString
+  title: MyString
+  year: 1
+  advisor: MyString
+  thesis: MyString
+  genealogy_id: 1
