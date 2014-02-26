@@ -1,27 +1,9 @@
-<p id="notice"><%= notice %></p>
+<h3>Doctorates</h3>
+
+<h1><%= @doctorate.first_last %>, <%= @doctorate.title %></h1>
 
 <p>
-  <b>First:</b>
-  <%= @doctorate.first %>
-</p>
-
-<p>
-  <b>Last:</b>
-  <%= @doctorate.last %>
-</p>
-
-<p>
-  <b>University:</b>
-  <%= @doctorate.university %>
-</p>
-
-<p>
-  <b>Title:</b>
-  <%= @doctorate.title %>
-</p>
-
-<p>
-  <b>Year:</b>
+  <%= @doctorate.university %>, 
   <%= @doctorate.year %>
 </p>
 
@@ -31,7 +13,7 @@
 </p>
 
 <p>
-  <b>Thesis:</b>
+  <b>Dissertation Title:</b>
   <%= @doctorate.thesis %>
 </p>
 
