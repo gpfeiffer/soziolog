@@ -2,6 +2,10 @@
 
 <h1><%= @doctorate.first_last %>, <%= @doctorate.title %></h1>
 
+<h2><%= @doctorate.thesis %></h2>
+
+<p><b>MSC:</b> <%= @doctorate.msc %></p>
+
 <p>
   <%= @doctorate.university %>, 
   <%= @doctorate.year %>
@@ -12,10 +16,6 @@
   <%= @doctorate.advisor %>
 </p>
 
-<p>
-  <b>Dissertation Title:</b>
-  <%= @doctorate.thesis %>
-</p>
 
 <p>
   <b>Genealogy:</b>

@@ -1,5 +1,5 @@
 class Doctorate < ActiveRecord::Base
-  attr_accessible :advisor, :first, :genealogy_id, :last, :thesis, :title, :university, :year
+  attr_accessible :advisor, :first, :genealogy_id, :last, :msc, :thesis, :title, :university, :year
 
   def first_last
     "#{first} #{last}"
@@ -11,5 +11,9 @@ class Doctorate < ActiveRecord::Base
 
   def genealogy_url
     "http://genealogy.math.ndsu.nodak.edu/id.php?id=#{genealogy_id}"
+  end
+
+  def to_s
+    "#{first_last} (#{year})"
   end
 end
