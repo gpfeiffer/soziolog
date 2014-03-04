@@ -19,6 +19,9 @@ Irish Mathematical Society
 <% if can? :read, Conference %> 
 | <%= link_to 'Conferences', conferences_path %> 
 <% end %>
+<% if can? :read, Doctorate %> 
+| <%= link_to 'Doctorates', doctorates_path %> 
+<% end %>
 </div>
 <div id="login">
   <% if user_signed_in? %>

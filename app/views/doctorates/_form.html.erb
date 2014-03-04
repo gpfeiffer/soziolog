@@ -11,43 +11,46 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :first %><br />
-    <%= f.text_field :first %>
-  </div>
-  <div class="field">
-    <%= f.label :last %><br />
-    <%= f.text_field :last %>
-  </div>
-  <div class="field">
-    <%= f.label :university %><br />
-    <%= f.text_field :university %>
-  </div>
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :year %><br />
-    <%= f.number_field :year %>
-  </div>
-  <div class="field">
-    <%= f.label :advisor %><br />
-    <%= f.text_field :advisor %>
-  </div>
-  <div class="field">
-    <%= f.label :thesis %><br />
-    <%= f.text_field :thesis %>
-  </div>
-  <div class="field">
-    <%= f.label :msc %><br />
-    <%= f.text_field :msc %>
-  </div>
-  <div class="field">
-    <%= f.label :genealogy_id %><br />
-    <%= f.number_field :genealogy_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<table>
+  <tr>
+    <td><%= f.label :first %></td>
+    <td><%= f.text_field :first %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :last %></td>
+    <td><%= f.text_field :last %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :title %></td>
+    <td><%= f.text_field :title %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :university %></td>
+    <td><%= f.text_field :university %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :year %></td>
+    <td><%= f.number_field :year %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :thesis %></td>
+    <td><%= f.text_field :thesis %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :advisor %></td>
+    <td><%= f.text_field :advisor %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :msc, 'MSC' %></td>
+    <td><%= f.text_field :msc %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :genealogy_id %></td>
+    <td><%= f.number_field :genealogy_id %></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><%= f.submit %></td>
+  </tr>
+</table>
 <% end %>

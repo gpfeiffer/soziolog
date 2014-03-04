@@ -23,5 +23,10 @@
 </p>
 
 
+<% if can? :edit, @doctorate %>
 <%= link_to 'Edit', edit_doctorate_path(@doctorate) %> |
+<% end %>
+<% if can? :destroy, @doctorate %>
+<%= link_to 'Destroy', @doctorate, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<% end %>
 <%= link_to 'Back', doctorates_path %>
