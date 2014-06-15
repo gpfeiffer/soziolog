@@ -7,6 +7,8 @@ class Member < ActiveRecord::Base
     "H" => "honorary",
     "L" => "life",
     "R" => "retired",
+    "I" => "institutional",
+    "N" => "nominated student",
     "D" => "deceased",
     "P" => "???",
     "AMS" => "reciprocal AMS",

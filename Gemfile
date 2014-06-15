@@ -44,3 +44,5 @@ gem 'cancan'
 
 gem 'kramdown'
 gem 'nokogiri'
+
+gem 'i18n' # I18n.transliterate

@@ -1,16 +1,16 @@
 <h1>Members</h1>
 
-<% members_by_first = @members.group_by { |m| m.surname[0] } %>
+<% members_by_first = @members.group_by { |m| I18n.transliterate(m.surname[0]) } %>
 
 <p>|
-<% members_by_first.each_key do |key| %>
+<% members_by_first.keys.sort.each do |key| %>
 <%= link_to(key, :anchor => key) %> |
 <% end %>
 </p>
 
 <table>
   <% members_by_first.each do |key, members| %>
-    <% members.each do |member| %>
+    <% members.sort_by { |m| [I18n.transliterate(m.surname), I18n.transliterate(m.forename)] }.each do |member| %>
       <tr>
         <td align="right"><%= member.number %></td>
         <td><%= { 'yes' => '+', 'no' => '' }[member.bulletin] %></td>
