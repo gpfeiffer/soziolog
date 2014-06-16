@@ -45,6 +45,18 @@ class Member < ActiveRecord::Base
     "#{forename} #{surname}"
   end
 
+  def institute
+    Member.find_by_number(self.number[0,4]) if status == "N"
+  end
+
+  def institutional_name
+    address.split("\n")[0,2].join(", ") if status == "I"
+  end
+
+  def nominees
+    Member.select { |x| x.status == "N" and x.number[0,4] == self.number } if status == "I"
+  end
+
   def address_line
     address.gsub(/\r?\n/, " ")
   end

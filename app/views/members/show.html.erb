@@ -15,6 +15,21 @@
 <pre style=""><%= @member.address %></pre>
 </div>
 
+<% institute = @member.institute %>
+<% if institute %>
+Nominated by <%= link_to institute.institutional_name, institute %>.
+<% end %>
+
+<% nominees = @member.nominees %>
+<% if nominees %>
+Student Nominees:
+<ul>
+<% nominees.each do |nominee| %>
+<li><%= link_to nominee.name, nominee %></li>
+<% end %>
+</ul>
+<% end %>
+
 <p><b>Bulletin?</b> <%= @member.bulletin %></p>
 <p><%= @member.comment %></p>
 
