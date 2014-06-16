@@ -17,12 +17,12 @@ class Member < ActiveRecord::Base
     "NZMS" => "reciprocal NZMS",
     "RSME" => "reciprocal RSME",
     ## FIXME:  the ones below should all be replaced by one from above.
-    "Life member" => "Life member",
-    "Retiring 2009" => "Retiring 2009",
-    "honorary life member" => "honorary life member", 
-    "Hon 95" => "Hon 95", 
-    "Retired" => "Retired", 
-    "Honorary" => "Honorary",
+    # "Life member" => "Life member",
+    # "Retiring 2009" => "Retiring 2009",
+    # "honorary life member" => "honorary life member", 
+    # "Hon 95" => "Hon 95", 
+    # "Retired" => "Retired", 
+    # "Honorary" => "Honorary",
   }
 
   validates :status, :presence => true, :inclusion => STATUSES.keys
