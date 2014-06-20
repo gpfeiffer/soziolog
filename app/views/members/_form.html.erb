@@ -41,6 +41,10 @@
     <td><%= f.select :status, Member::STATUSES.map { |k, v| [v, k] } %></td>
   </tr>
   <tr>
+    <td align="right"><%= f.label :reciprocal %></td>
+    <td><%= f.text_field :reciprocal, :size => 40 %></td>
+  </tr>
+  <tr>
     <td align="right"><%= f.label :bulletin %></td>
     <td><%= f.select :bulletin, Member::BULLETIN, :include_blank => true %></td>
   </tr>

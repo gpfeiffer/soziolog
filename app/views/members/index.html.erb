@@ -13,7 +13,7 @@
     <% members.sort_by { |m| [I18n.transliterate(m.surname), I18n.transliterate(m.forename)] }.each do |member| %>
       <tr>
         <td align="right"><%= member.number %></td>
-        <td><%= { 'yes' => '+', 'no' => '' }[member.bulletin] %></td>
+        <td style="font-size: smaller; font-family: monospace;"><%= member.status %><%= { 'yes' => '+', 'no' => '' }[member.bulletin] %></td>
         <td><%= link_to member.name, member %></td>
         <td style="font-family: monospace;"><%= mail_to member.email, member.email, :style => "text-decoration: none;" %></td>
         <td><%= link_to("", {}, :name => key) %></td>

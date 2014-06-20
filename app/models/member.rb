@@ -1,5 +1,5 @@
 class Member < ActiveRecord::Base
-  attr_accessible :address, :bulletin, :comment, :email, :forename, :number, :status, :surname, :title
+  attr_accessible :address, :bulletin, :comment, :email, :forename, :number, :status, :reciprocal, :surname, :title
 
   STATUSES = {
     "O" => "ordinary",
@@ -8,21 +8,10 @@ class Member < ActiveRecord::Base
     "L" => "life",
     "R" => "retired",
     "I" => "institutional",
-    "N" => "nominated student",
+    "N" => "nominated",
     "D" => "deceased",
     "P" => "???",
-    "AMS" => "reciprocal AMS",
-    "DMV" => "reciprocal DMV",
-    "IMTA" => "reciprocal IMTA",
-    "NZMS" => "reciprocal NZMS",
-    "RSME" => "reciprocal RSME",
-    ## FIXME:  the ones below should all be replaced by one from above.
-    # "Life member" => "Life member",
-    # "Retiring 2009" => "Retiring 2009",
-    # "honorary life member" => "honorary life member", 
-    # "Hon 95" => "Hon 95", 
-    # "Retired" => "Retired", 
-    # "Honorary" => "Honorary",
+    "C" => "reciprocal",
   }
 
   validates :status, :presence => true, :inclusion => STATUSES.keys

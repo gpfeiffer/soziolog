@@ -30,6 +30,9 @@ Student Nominees:
 </ul>
 <% end %>
 
+<% if @member.reciprocal.present? %>
+<p><b>Other Society:</b> <%= @member.reciprocal %></p>
+<% end %>
 <p><b>Bulletin?</b> <%= @member.bulletin %></p>
 <p><%= @member.comment %></p>
 
