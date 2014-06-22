@@ -21,5 +21,16 @@
 </p>
 
 
+
+<p>
+  <b>Subscriptions: <%= link_to '[+]', new_subscription_path(:transaction_id => @transaction) %></b>
+      <% @transaction.subscriptions.each do |subscription| %>
+        <%= link_to subscription.member.number, subscription.member %>
+      <% end %>
+</p>
+
+<p><b>Sum:</b> <%= @transaction.subscriptions.map(&:payment).sum %></p>
+
+
 <%= link_to 'Edit', edit_transaction_path(@transaction) %> |
 <%= link_to 'Back', transactions_path %>

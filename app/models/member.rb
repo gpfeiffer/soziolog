@@ -1,6 +1,8 @@
 class Member < ActiveRecord::Base
   attr_accessible :address, :bulletin, :comment, :email, :forename, :number, :status, :reciprocal, :surname, :title
 
+  has_many :subscriptions
+
   STATUSES = {
     "O" => "ordinary",
     "S" => "student",
@@ -32,6 +34,10 @@ class Member < ActiveRecord::Base
 
   def first_last
     "#{forename} #{surname}"
+  end
+
+  def to_s
+    name
   end
 
   def institute

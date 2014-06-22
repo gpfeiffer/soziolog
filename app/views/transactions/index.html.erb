@@ -5,7 +5,6 @@
     <th>Date</th>
     <th>Text</th>
     <th>Amount</th>
-    <th>Comment</th>
     <th></th>
     <th></th>
     <th></th>
@@ -16,7 +15,11 @@
     <td><%= transaction.date %></td>
     <td><%= transaction.text %></td>
     <td align="right"><%= number_to_currency transaction.amount/100.0, :format => "%n %u", :unit => "EUR" %></td>
-    <td><%= transaction.comment %></td>
+    <td>
+      <% transaction.subscriptions.each do |subscription| %>
+        <%= link_to subscription.member.number, subscription.member %>
+      <% end %>
+    </td>
     <td><%= link_to 'Show', transaction %></td>
     <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
     <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>

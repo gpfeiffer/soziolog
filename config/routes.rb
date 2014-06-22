@@ -1,4 +1,7 @@
 Sociolog::Application.routes.draw do
+  resources :subscriptions
+
+
   resources :transactions
 
 
