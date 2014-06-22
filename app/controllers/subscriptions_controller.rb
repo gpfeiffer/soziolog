@@ -29,6 +29,7 @@ class SubscriptionsController < ApplicationController
     @subscription.year = @subscription.transaction.date.year.to_s
     @subscription.payment = @subscription.transaction.amount
     @subscription.paid_on = @subscription.transaction.date
+    @subscription.currency = "EUR"
 
     respond_to do |format|
       format.html # new.html.erb

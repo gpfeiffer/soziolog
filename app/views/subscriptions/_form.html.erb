@@ -24,6 +24,7 @@
   <div class="field">
     <%= f.label :value %><br />
     <%= f.number_field :value %>
+    <%= f.select :currency, Subscription::CURRENCIES %>
   </div>
   <div class="field">
     <%= f.label :payment %><br />

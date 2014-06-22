@@ -11,12 +11,13 @@
 
 <p>
   <b>Value:</b>
-  <%= @subscription.value %>
+  <%= @subscription.currency %>
+  <%= money @subscription.value %>
 </p>
 
 <p>
 EUR 
-<%= @subscription.payment %>
+<%= money @subscription.payment %>
 paid on
 <%= link_to @subscription.paid_on, @subscription.transaction %>.
 </p>
