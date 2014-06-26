@@ -11,7 +11,7 @@ class Member < ActiveRecord::Base
     "R" => "retired",
     "I" => "institutional",
     "N" => "nominated",
-    "D" => "deceased",
+    "D" => "discontinued",
     "P" => "???",
     "C" => "reciprocal",
   }
@@ -38,6 +38,10 @@ class Member < ActiveRecord::Base
 
   def to_s
     name
+  end
+
+  def arrears?
+    ['O', 'S', 'R', 'C'].include? status and not subscriptions.map(&:year).include? '2014' and comment != "ITT paying"
   end
 
   def institute

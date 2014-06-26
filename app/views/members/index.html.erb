@@ -1,6 +1,6 @@
 <h1>Members</h1>
 
-<% members_by_first = @members.group_by { |m| I18n.transliterate(m.surname[0]) } %>
+<% members_by_first = @active.group_by { |m| I18n.transliterate(m.surname[0]) } %>
 
 <p>|
 <% members_by_first.keys.sort.each do |key| %>
@@ -8,11 +8,13 @@
 <% end %>
 </p>
 
+<h2><%= @active.count %> Active Members</h2>
+
 <table>
-  <% members_by_first.each do |key, members| %>
+  <% members_by_first.sort.each do |key, members| %>
     <% members.sort_by { |m| [I18n.transliterate(m.surname), I18n.transliterate(m.forename)] }.each do |member| %>
       <tr>
-        <td align="right"><%= member.number %></td>
+        <%= content_tag :td, member.number, :align => 'right', :class => member.arrears? ? 'arrears' : '' %>
         <td style="font-size: smaller; font-family: monospace;"><%= member.status %><%= { 'yes' => '+', 'no' => '' }[member.bulletin] %></td>
         <td><%= link_to member.name, member %></td>
         <td style="font-family: monospace;"><%= mail_to member.email, member.email, :style => "text-decoration: none;" %></td>
@@ -25,3 +27,33 @@
 <br />
 
 <%= link_to('New Member', new_member_path) if can? :create, Member %>
+
+<br />
+
+<h2><%= @institutions.count %> Institutional Members</h2>
+
+<table>
+    <% @institutions.sort_by { |m| [I18n.transliterate(m.surname), I18n.transliterate(m.forename)] }.each do |member| %>
+      <tr>
+        <td align="right"><%= member.number %></td>
+        <td style="font-size: smaller; font-family: monospace;"><%= member.status %><%= { 'yes' => '+', 'no' => '' }[member.bulletin] %></td>
+        <td><%= link_to member.name, member %></td>
+        <td style="font-family: monospace;"><%= mail_to member.email, member.email, :style => "text-decoration: none;" %></td>
+      </tr>
+    <% end %>
+</table>
+
+<br />
+
+<h2><%= @discontinued.count %> Discontinued Members</h2>
+
+<table>
+    <% @discontinued.sort_by { |m| [I18n.transliterate(m.surname), I18n.transliterate(m.forename)] }.each do |member| %>
+      <tr>
+        <td align="right"><%= member.number %></td>
+        <td style="font-size: smaller; font-family: monospace;"><%= member.status %><%= { 'yes' => '+', 'no' => '' }[member.bulletin] %></td>
+        <td><%= link_to member.name, member %></td>
+        <td style="font-family: monospace;"><%= mail_to member.email, member.email, :style => "text-decoration: none;" %></td>
+      </tr>
+    <% end %>
+</table>

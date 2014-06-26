@@ -19,7 +19,7 @@
   </div>
   <div class="field">
     <%= f.label :member_id %><br />
-    <%= f.select :member_id, Member.all.map { |x| [x, x.id] }, :include_blank => true %>
+    <%= f.select :member_id, Member.all.map { |x| [x.to_s + " " + x.number, x.id] }, :include_blank => true %>
   </div>
   <div class="field">
     <%= f.label :value %><br />

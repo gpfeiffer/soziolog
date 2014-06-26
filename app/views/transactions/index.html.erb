@@ -6,23 +6,21 @@
     <th>Text</th>
     <th>Amount</th>
     <th></th>
-    <th></th>
-    <th></th>
   </tr>
 
 <% @transactions.each do |transaction| %>
   <tr>
-    <td><%= transaction.date %></td>
-    <td><%= transaction.text %></td>
+    <td><%= link_to transaction.date, transaction %></td>
+    <td><%= link_to transaction.text, transaction %></td>
     <td align="right"><%= number_to_currency transaction.amount/100.0, :format => "%n %u", :unit => "EUR" %></td>
     <td>
-      <% transaction.subscriptions.each do |subscription| %>
+      <% transaction.subscriptions.first(5).each do |subscription| %>
         <%= link_to subscription.member.number, subscription.member %>
       <% end %>
+      <% if transaction.subscriptions.count > 5 %>
+        <%= link_to '...', transaction %>
+      <% end %>
     </td>
-    <td><%= link_to 'Show', transaction %></td>
-    <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
-    <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>

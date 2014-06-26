@@ -1,6 +1,6 @@
 QUIET ADD IMS-MEMBERS DD=X IMPORT
 //X DD *
-<% @members.each do |member| %>
+<% @active.each do |member| %>
 <% if member.email.present? %>
 <%= "%-40s %s" % [member.email, member.first_last] %>
 <% end %>

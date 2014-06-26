@@ -1,9 +1,5 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Date:</b>
-  <%= @transaction.date %>
-</p>
+<h3><%= @transaction.date %></h3>
+<h1>Transaction</h1>
 
 <p>
   <b>Text:</b>
@@ -12,7 +8,7 @@
 
 <p>
   <b>Amount:</b>
-  <%= @transaction.amount %>
+  <%= money @transaction.amount %>
 </p>
 
 <p>
@@ -27,10 +23,34 @@
       <% @transaction.subscriptions.each do |subscription| %>
         <%= link_to subscription.member.number, subscription.member %>
       <% end %>
+      <table>
+	<tr>
+	  <th>Member</th>
+	  <th>#</th>
+	  <th>Year</th>
+	  <th>Value</th>
+	  <th>Payment</th>
+	</tr>
+      <% @transaction.subscriptions.each do |subscription| %>
+<tr>
+  <td><%= subscription.member %></td>
+  <td><%= link_to subscription.member.number, subscription.member %></td>
+  <td><%= subscription.year %></td>
+  <td align="right"><%= subscription.currency %> <%= money subscription.value %></td>
+  <td align="right"><%= money subscription.payment %></td>
+</tr>
+      <% end %>
+      <tr><th>Sum:</th>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td align="right"><%= money @transaction.subscriptions.map(&:payment).sum %></td>
+</tr>
+</table>
 </p>
 
-<p><b>Sum:</b> <%= @transaction.subscriptions.map(&:payment).sum %></p>
 
 
 <%= link_to 'Edit', edit_transaction_path(@transaction) %> |
+<%= link_to 'Destroy', @transaction, method: :delete, data: { confirm: 'Are you sure?' } %> |
 <%= link_to 'Back', transactions_path %>
