@@ -6,6 +6,6 @@ class Subscription < ActiveRecord::Base
 
   CURRENCIES = %w{ EUR GBP IEP USD } # ISO 4217 codes
 
-  validates :value, :currency, :presence => true
+  validates :value, :currency, :member_id, :presence => true
   validates :currency, :inclusion => CURRENCIES
 end
