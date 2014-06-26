@@ -35,7 +35,7 @@
 <table>
     <% @institutions.sort_by { |m| [I18n.transliterate(m.surname), I18n.transliterate(m.forename)] }.each do |member| %>
       <tr>
-        <td align="right"><%= member.number %></td>
+        <%= content_tag :td, member.number, :align => 'right', :class => member.arrears? ? 'arrears' : '' %>
         <td style="font-size: smaller; font-family: monospace;"><%= member.status %><%= { 'yes' => '+', 'no' => '' }[member.bulletin] %></td>
         <td><%= link_to member.name, member %></td>
         <td style="font-family: monospace;"><%= mail_to member.email, member.email, :style => "text-decoration: none;" %></td>

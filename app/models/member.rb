@@ -12,7 +12,6 @@ class Member < ActiveRecord::Base
     "I" => "institutional",
     "N" => "nominated",
     "D" => "discontinued",
-    "P" => "???",
     "C" => "reciprocal",
   }
 
@@ -40,8 +39,12 @@ class Member < ActiveRecord::Base
     name
   end
 
+  def active?
+    "SCHNORL".include? status    
+  end
+
   def arrears?
-    ['O', 'S', 'R', 'C'].include? status and not subscriptions.map(&:year).include? '2014' and comment != "ITT paying"
+    "RISCO".include? status and not subscriptions.map(&:year).include? '2014' and comment != "ITT paying"
   end
 
   def institute
