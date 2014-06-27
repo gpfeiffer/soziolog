@@ -16,13 +16,15 @@
 
 <% if funded.present? %>
 <h2>Funded</h2>
-<ul>
+<p>
 <% funded.each do |conference| %>
-<li>
-<%= link_to conference.name, conference.conference_url %>
-</li>
+<%= link_to conference.name, conference.conference_url %>,
+<%= dates_in_words(conference.first_day, conference.last_day) %>,
+<%= conference.host %>:
+<%= conference.funding %>.- Euro.
+<br />
 <% end %>
-</ul>
+</p>
 <% end %>
 
 <% @conferences.each.with_index(1) do |conference, index| %>
