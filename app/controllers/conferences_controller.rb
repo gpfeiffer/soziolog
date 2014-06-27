@@ -4,7 +4,9 @@ class ConferencesController < ApplicationController
   # GET /conferences
   # GET /conferences.json
   def index
-    @call = Conference.first.call or "-"
+    @conferences_by_call = @conferences.group_by(&:call)
+    @call = params[:call] || @conferences_by_call.keys.sort.last
+    @conferences = @conferences_by_call[@call]
 
     respond_to do |format|
       format.html # index.html.erb

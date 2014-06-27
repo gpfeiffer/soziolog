@@ -1,6 +1,29 @@
+<% content_for :side do %>
+<h3>Calls</h3>
+<ul>
+<% @conferences_by_call.keys.sort.reverse.each do |key| %>
+<li>
+<%= link_to_unless_current key, conferences_path(:call => key) %>
+</li>
+<% end %>
+</ul>
+<% end %>
+
+<h3><%= @call %></h3>
 <h1>Conference Support</h1>
 
-<b>Call:</b> <%= @call %>
+<% funded = @conferences.select { |x| x.funding && x.funding > 0 } %>
+
+<% if funded.present? %>
+<h2>Funded</h2>
+<ul>
+<% funded.each do |conference| %>
+<li>
+<%= link_to conference.name, conference.conference_url %>
+</li>
+<% end %>
+</ul>
+<% end %>
 
 <% @conferences.each.with_index(1) do |conference, index| %>
 <hr />

@@ -1,14 +1,24 @@
+<% call = @conference.call %>
+<% conferences_by_call = Conference.all.group_by(&:call) %>
+
 <% content_for :side do %>
 <h3>Conference Support</h3>
+<h4><%= call %></h4>
   <ol>
-    <% Conference.all.each do |c| %>
+    <% Conference.where(:call => call).each do |c| %>
     <li><%= link_to_unless_current c.name, c %></li>
     <% end %>
   </ol>
+
+<% Conference.uniq.pluck(:call).sort.reverse.each do |key| %>
+<% if key != call %>
+<h4><%= link_to key, conferences_path(:call => key) %></h4>
+<% end %>
+<% end %>
 <% end %>
 
 <h3>
-  <%= @conference.call %>
+  <%= call %>
 </h3>
 
 <h1>
