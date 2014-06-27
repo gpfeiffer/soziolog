@@ -12,7 +12,7 @@
 </h3>
 
 <h1>
-  <%= @conference.name %>
+  <%= link_to_if @conference.conference_url.present?, @conference.name, @conference.conference_url %>
 </h1>
 
 <p>
