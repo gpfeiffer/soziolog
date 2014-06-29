@@ -15,6 +15,7 @@
 <% funded = @conferences.select { |x| x.funding && x.funding > 0 } %>
 
 <% if funded.present? %>
+<div style="background: rgb(255,255,204); margin: 0px; padding: 10px;">
 <h2>Funded</h2>
 <p>
 <% funded.each do |conference| %>
@@ -25,6 +26,7 @@
 <br />
 <% end %>
 </p>
+</div>
 <% end %>
 
 <% @conferences.each.with_index(1) do |conference, index| %>
@@ -38,7 +40,7 @@
 <br />
 <b>Applicant:</b>    <%= conference.applicant %>
   (received on:  <%= conference.received_on %>)
-<div style="background-color: #E6F5F5;">
+<div style="background-color: #E6F5F5; padding: 10px;">
   <%= conference.description.truncate(400, :separator => ' ', :omission => ' ') %>
 <%= link_to '[more...]', conference %>
 </div>
