@@ -1,9 +1,9 @@
 class SubscriptionsController < ApplicationController
+  load_and_authorize_resource
+
   # GET /subscriptions
   # GET /subscriptions.json
   def index
-    @subscriptions = Subscription.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @subscriptions }
@@ -13,8 +13,6 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions/1
   # GET /subscriptions/1.json
   def show
-    @subscription = Subscription.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @subscription }
@@ -24,7 +22,6 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions/new
   # GET /subscriptions/new.json
   def new
-    @subscription = Subscription.new
     @subscription.transaction = Transaction.find(params[:transaction_id])
     @subscription.year = @subscription.transaction.date.year.to_s
     @subscription.payment = @subscription.transaction.amount
@@ -39,14 +36,11 @@ class SubscriptionsController < ApplicationController
 
   # GET /subscriptions/1/edit
   def edit
-    @subscription = Subscription.find(params[:id])
   end
 
   # POST /subscriptions
   # POST /subscriptions.json
   def create
-    @subscription = Subscription.new(params[:subscription])
-
     respond_to do |format|
       if @subscription.save
         format.html { redirect_to @subscription, notice: 'Subscription was successfully created.' }
@@ -61,8 +55,6 @@ class SubscriptionsController < ApplicationController
   # PUT /subscriptions/1
   # PUT /subscriptions/1.json
   def update
-    @subscription = Subscription.find(params[:id])
-
     respond_to do |format|
       if @subscription.update_attributes(params[:subscription])
         format.html { redirect_to @subscription, notice: 'Subscription was successfully updated.' }
@@ -77,7 +69,6 @@ class SubscriptionsController < ApplicationController
   # DELETE /subscriptions/1
   # DELETE /subscriptions/1.json
   def destroy
-    @subscription = Subscription.find(params[:id])
     @subscription.destroy
 
     respond_to do |format|

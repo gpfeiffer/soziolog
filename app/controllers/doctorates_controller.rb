@@ -1,9 +1,9 @@
 class DoctoratesController < ApplicationController
+  load_and_authorize_resource
+
   # GET /doctorates
   # GET /doctorates.json
   def index
-    @doctorates = Doctorate.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @doctorates }
@@ -13,8 +13,6 @@ class DoctoratesController < ApplicationController
   # GET /doctorates/1
   # GET /doctorates/1.json
   def show
-    @doctorate = Doctorate.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @doctorate }
@@ -24,8 +22,6 @@ class DoctoratesController < ApplicationController
   # GET /doctorates/new
   # GET /doctorates/new.json
   def new
-    @doctorate = Doctorate.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @doctorate }
@@ -34,14 +30,11 @@ class DoctoratesController < ApplicationController
 
   # GET /doctorates/1/edit
   def edit
-    @doctorate = Doctorate.find(params[:id])
   end
 
   # POST /doctorates
   # POST /doctorates.json
   def create
-    @doctorate = Doctorate.new(params[:doctorate])
-
     respond_to do |format|
       if @doctorate.save
         format.html { redirect_to @doctorate, notice: 'Doctorate was successfully created.' }
@@ -56,8 +49,6 @@ class DoctoratesController < ApplicationController
   # PUT /doctorates/1
   # PUT /doctorates/1.json
   def update
-    @doctorate = Doctorate.find(params[:id])
-
     respond_to do |format|
       if @doctorate.update_attributes(params[:doctorate])
         format.html { redirect_to @doctorate, notice: 'Doctorate was successfully updated.' }
@@ -72,7 +63,6 @@ class DoctoratesController < ApplicationController
   # DELETE /doctorates/1
   # DELETE /doctorates/1.json
   def destroy
-    @doctorate = Doctorate.find(params[:id])
     @doctorate.destroy
 
     respond_to do |format|

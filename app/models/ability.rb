@@ -8,7 +8,7 @@ class Ability
     if user.admin?
       can :manage, :all
     else
-      can :read, [Conference]
+      can :read, [Conference, Doctorate]
     end
   end
 end

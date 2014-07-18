@@ -44,6 +44,7 @@ Student Nominees:
 <% end %>
 <%= link_to 'Back', members_path %>
 
+<% if can? :destroy, @member %>
 <p><b>Subscriptions</b></p>
 <table>
 <% @member.subscriptions.sort_by(&:year).reverse.each do |subscription| %>
@@ -55,4 +56,5 @@ Student Nominees:
 </tr>
 <% end %>
 </table>
+<% end %>
 
