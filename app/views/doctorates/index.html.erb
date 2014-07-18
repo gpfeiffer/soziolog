@@ -1,3 +1,11 @@
+<p>
+This is a list of mathematical doctorates obtained at Irish universities,
+as recorded in the 
+<%= link_to 'Maths Genealogy Project', 'http://genealogy.math.ndsu.nodak.edu' %>. Drop <%= mail_to 'goetz.pfeiffer@nuigalway.ie', 'me', :subject => 'Irish Mathematics Doctorates', :body => 'Dear Goetz, ' %> a note if you
+have additional information or if you
+spot any inaccuracies ...
+</p>
+
 <% @doctorates.group_by(&:university).each do |university, doctorates_by_uni| %>
 <h2><%= university %> (<%= doctorates_by_uni.count %>)</h2>
 <% doctorates_by_uni.sort_by! { |d| d.year || 0 }.group_by(&:year).each do |year, doctorates| %>
