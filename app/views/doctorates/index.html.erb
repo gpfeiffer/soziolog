@@ -22,4 +22,4 @@ spot any inaccuracies ...
 
 <br />
 
-<%= link_to 'New Doctorate', new_doctorate_path %>
+<%= link_to('New Doctorate', new_doctorate_path) if can? :create, Doctorate %>
