@@ -72,19 +72,21 @@ class Member < ActiveRecord::Base
   end
 
   def to_a
-    [ number, title, surname, forename ].concat(address_lines).concat [ email, status, bulletin, comment ]
+    [ number, title, surname, forename ].concat(address_lines).concat [ email, status, bulletin ]
   end
 
   def self.to_xls
     book = Spreadsheet::Workbook.new
-    sheet = book.create_worksheet :name => 'current database'
+    sheet = book.create_worksheet :name => 'bulletin'
     
     sheet.row(0).concat COLUMNS
     
     format = Spreadsheet::Format.new :color => :blue, :weight => :bold
     sheet.row(0).default_format = format
     
-    Member.all.each_with_index do |member, i|
+    members = Member.where(:bulletin => "yes").group_by(&:status)
+    members = "HLOCRSN".split("").map { |c| members[c] }.sum
+    members.each_with_index do |member, i|
       sheet.row(i+1).concat member.to_a
     end
     
