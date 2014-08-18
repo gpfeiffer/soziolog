@@ -15,10 +15,10 @@ class Member < ActiveRecord::Base
     "C" => "reciprocal",
   }
 
-  validates :status, :presence => true, :inclusion => STATUSES.keys
-
   BULLETIN = %w{ yes no }
 
+  validates :number, :presence => true, :uniqueness => true
+  validates :status, :presence => true, :inclusion => STATUSES.keys
   validates :bulletin, :inclusion => BULLETIN
 
   COLUMNS = %w{n Title Surname Forename Address0 Address1 Address2 Address3 Address4 Address5 Email Status Bulletin}
