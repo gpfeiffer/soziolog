@@ -13,6 +13,7 @@ class Member < ActiveRecord::Base
     "N" => "nominated",
     "D" => "discontinued",
     "C" => "reciprocal",
+    "P" => "pending",
   }
 
   BULLETIN = %w{ yes no }
