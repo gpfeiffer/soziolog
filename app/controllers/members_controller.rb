@@ -5,9 +5,9 @@ class MembersController < ApplicationController
   # GET /members.json
   def index
     members_by_status = @members.group_by(&:status)
-    @institutions = members_by_status['I']
-    @discontinued = members_by_status['D']
-    @pending = members_by_status['P']
+    @institutions = members_by_status['I'] || []
+    @discontinued = members_by_status['D'] || []
+    @pending = members_by_status['P'] || []
     @active = members_by_status.select { |k, v| "DIP".exclude? k }.values.sum
     respond_to do |format|
       format.html # index.html.erb
