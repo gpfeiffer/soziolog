@@ -3,6 +3,8 @@ class Member < ActiveRecord::Base
 
   has_many :subscriptions
 
+  default_scope :order => [:surname, :forename]
+
   STATUSES = {
     "O" => "ordinary",
     "S" => "student",
