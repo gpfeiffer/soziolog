@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140627143544) do
+ActiveRecord::Schema.define(:version => 20140820183045) do
+
+  create_table "balances", :force => true do |t|
+    t.integer  "balance"
+    t.date     "date"
+    t.integer  "previous_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "conferences", :force => true do |t|
     t.string   "call"
@@ -78,6 +86,7 @@ ActiveRecord::Schema.define(:version => 20140627143544) do
     t.text     "comment"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "balance_id"
   end
 
   create_table "users", :force => true do |t|

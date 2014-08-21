@@ -1,0 +1,31 @@
+<h1>Listing balances</h1>
+
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Balance</th>
+    <th>Previous</th>
+    <th>Amount</th>
+    <th>Error</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @balances.each do |balance| %>
+  <tr>
+    <td><%= balance.date %></td>
+    <td align="right"><%= money(balance.balance) %></td>
+    <td align="right"><%= money(balance.previous.balance) if balance.previous %></td>
+    <td align="right"><%= money(balance.amount) %></td>
+    <td align="right"><%= money(balance.error) %></td>
+    <td><%= link_to 'Show', balance %></td>
+    <td><%= link_to 'Edit', edit_balance_path(balance) %></td>
+    <td><%= link_to 'Destroy', balance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Balance', new_balance_path %>

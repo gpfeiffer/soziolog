@@ -1,0 +1,56 @@
+<h3>Balance</h3>
+<h1>
+  <%= @balance.date %>
+</h1>
+
+<p>
+  <b>Balance:</b>
+  <%= money(@balance.balance) %>
+</p>
+
+<p>
+  <b>Previous:</b>
+  <%= money(@balance.previous.balance) %>
+</p>
+
+<p>
+  <b>Amount:</b>
+  <%= money(@balance.amount) %>
+</p>
+
+<% if @balance.error != 0 %>
+<p style="textcolor: red;">
+  <b>Error:</b>
+  <%= money(@balance.error) %>
+</p>
+<% end %>
+
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Text</th>
+    <th>Amount</th>
+    <th></th>
+  </tr>
+
+<% @balance.transactions.each do |transaction| %>
+  <tr>
+    <td><%= link_to transaction.date, transaction %></td>
+    <td><%= link_to transaction.text, transaction %></td>
+    <td align="right"><%= number_to_currency transaction.amount/100.0, :format => "%n %u", :unit => "EUR" %></td>
+    <td>
+      <% transaction.subscriptions.first(5).each do |subscription| %>
+        <%= link_to subscription.member.number, subscription.member %>
+      <% end %>
+      <% if transaction.subscriptions.count > 5 %>
+        <%= link_to '...', transaction %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+
+
+<%= link_to 'Edit', edit_balance_path(@balance) %> |
+<%= link_to 'Back', balances_path %>
