@@ -1,4 +1,8 @@
-<h3>Balance</h3>
+<h3>
+  Balance
+  <%= link_to '<', @balance.previous %>
+  <%= link_to('>', @balance.next) if @balance.next %>
+</h3>
 <h1>
   <%= @balance.date %>
 </h1>

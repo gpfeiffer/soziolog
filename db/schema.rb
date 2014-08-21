@@ -11,12 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140820183045) do
+ActiveRecord::Schema.define(:version => 20140821132800) do
 
   create_table "balances", :force => true do |t|
     t.integer  "balance"
     t.date     "date"
     t.integer  "previous_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
@@ -50,6 +57,14 @@ ActiveRecord::Schema.define(:version => 20140820183045) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.string   "msc"
+  end
+
+  create_table "labels", :force => true do |t|
+    t.integer  "amount"
+    t.integer  "transaction_id"
+    t.integer  "category_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "members", :force => true do |t|
