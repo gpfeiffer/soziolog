@@ -1,15 +1,12 @@
-<p id="notice"><%= notice %></p>
+<h3>Categories</h3>
 
-<p>
-  <b>Name:</b>
-  <%= @category.name %>
-</p>
+<h1><%= @category.name %></h1>
 
 <p>
   <b>Description:</b>
   <%= @category.description %>
 </p>
 
-
 <%= link_to 'Edit', edit_category_path(@category) %> |
+<%= link_to 'Destroy', @category, method: :delete, data: { confirm: 'Are you sure?' } %> |
 <%= link_to 'Back', categories_path %>
