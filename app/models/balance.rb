@@ -10,6 +10,10 @@ class Balance < ActiveRecord::Base
 
   validate :date, :presence => true, :uniqueness => true
 
+  def year
+    date.year
+  end
+
   def amount
     transactions.map(&:amount).sum
   end

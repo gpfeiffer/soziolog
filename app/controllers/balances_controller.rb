@@ -3,6 +3,9 @@ class BalancesController < ApplicationController
   # GET /balances.json
   def index
     @balances = Balance.all
+    @balances_by_year = @balances.group_by(&:year)
+    @year = params[:year] || @balances_by_year.keys.sort.last
+    @balances = @balances_by_year[@year.to_i]
 
     respond_to do |format|
       format.html # index.html.erb

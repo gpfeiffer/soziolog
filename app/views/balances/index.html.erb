@@ -1,4 +1,15 @@
-<h1>Listing balances</h1>
+<% content_for :side do %>
+<h3>Balances</h3>
+<ul>
+<% @balances_by_year.keys.sort.reverse.each do |key| %>
+<li>
+<%= link_to_unless_current key, balances_path(:year => key) %>
+</li>
+<% end %>
+</ul>
+<% end %>
+
+<h1>Balances <%= @year %></h1>
 
 <table>
   <tr>
