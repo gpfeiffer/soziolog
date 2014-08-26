@@ -19,34 +19,7 @@
 
 
 <p>
-  <b>Subscriptions: <%= link_to '[+]', new_subscription_path(:transaction_id => @transaction) %></b>
-      <% @transaction.subscriptions.each do |subscription| %>
-        <%= link_to subscription.member.number, subscription.member %>
-      <% end %>
-      <table>
-	<tr>
-	  <th>Member</th>
-	  <th>#</th>
-	  <th>Year</th>
-	  <th>Value</th>
-	  <th>Payment</th>
-	</tr>
-      <% @transaction.subscriptions.each do |subscription| %>
-<tr>
-  <td><%= subscription.member %></td>
-  <td><%= link_to subscription.member.number, subscription.member %></td>
-  <td><%= subscription.year %></td>
-  <td align="right"><%= subscription.currency %> <%= money subscription.value %></td>
-  <td align="right"><%= money subscription.payment %></td>
-</tr>
-      <% end %>
-      <tr><th>Sum:</th>
-	<td></td>
-	<td></td>
-	<td></td>
-	<td align="right"><%= money @transaction.subscriptions.map(&:payment).sum %></td>
-</tr>
-</table>
+<%= render :partial => 'subscriptions', :locals => { :transaction => @transaction } %>
 </p>
 
 
