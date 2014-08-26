@@ -16,10 +16,14 @@
   <%= @transaction.comment %>
 </p>
 
-
+<p>
+  <%= render :partial => 'subscriptions', 
+             :locals => { :transaction => @transaction } %>
+</p>
 
 <p>
-<%= render :partial => 'subscriptions', :locals => { :transaction => @transaction } %>
+  <%= render :partial => 'labels', 
+             :locals => { :transaction => @transaction } %>
 </p>
 
 

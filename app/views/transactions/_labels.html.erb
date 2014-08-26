@@ -1,0 +1,22 @@
+<b>
+  Labels: <%= link_to '[+]', new_label_path(:transaction_id => transaction) %>
+</b>
+
+<table>
+  <tr>
+    <th>Category</th>
+    <th>Amount</th>
+  </tr>
+  <% transaction.labels.each do |label| %>
+    <tr>
+      <td><%= link_to label.category, label.category %></td>
+      <td align="right"><%= money label.amount %></td>
+    </tr>
+  <% end %>
+  <tr>
+    <th>Sum:</th>
+    <td align="right">
+      <%= money transaction.labels.map(&:amount).sum %>
+    </td>
+  </tr>
+</table>

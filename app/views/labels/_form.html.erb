@@ -11,17 +11,16 @@
     </div>
   <% end %>
 
+  <%= f.hidden_field :transaction_id %>
+
+
   <div class="field">
     <%= f.label :amount %><br />
     <%= f.number_field :amount %>
   </div>
   <div class="field">
-    <%= f.label :transaction_id %><br />
-    <%= f.number_field :transaction_id %>
-  </div>
-  <div class="field">
     <%= f.label :category_id %><br />
-    <%= f.number_field :category_id %>
+    <%= f.select :category_id, Category.all.map { |x| [x, x.id] }, :include_blank => true %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -25,6 +25,7 @@ class LabelsController < ApplicationController
   # GET /labels/new.json
   def new
     @label = Label.new
+    @label.transaction = Transaction.find(params[:transaction_id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -44,7 +45,7 @@ class LabelsController < ApplicationController
 
     respond_to do |format|
       if @label.save
-        format.html { redirect_to @label, notice: 'Label was successfully created.' }
+        format.html { redirect_to @label.transaction, notice: 'Label was successfully created.' }
         format.json { render json: @label, status: :created, location: @label }
       else
         format.html { render action: "new" }
@@ -60,7 +61,7 @@ class LabelsController < ApplicationController
 
     respond_to do |format|
       if @label.update_attributes(params[:label])
-        format.html { redirect_to @label, notice: 'Label was successfully updated.' }
+        format.html { redirect_to @label.transaction, notice: 'Label was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -76,7 +77,7 @@ class LabelsController < ApplicationController
     @label.destroy
 
     respond_to do |format|
-      format.html { redirect_to labels_url }
+      format.html { redirect_to @label.transaction }
       format.json { head :no_content }
     end
   end
