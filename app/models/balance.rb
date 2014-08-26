@@ -14,7 +14,11 @@ class Balance < ActiveRecord::Base
     transactions.map(&:amount).sum
   end
 
+  def categorized
+    transactions.map(&:categorized).sum
+  end
+
   def error
-    balance - (previous.balance + amount)
+    amount - categorized
   end
 end

@@ -6,4 +6,8 @@ class Transaction < ActiveRecord::Base
 
   has_many :labels, :dependent => :destroy
   has_many :categories, :through => :labels
+
+  def categorized
+    labels.map(&:amount).sum
+  end
 end

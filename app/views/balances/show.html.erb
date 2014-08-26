@@ -22,8 +22,13 @@
   <%= money(@balance.amount) %>
 </p>
 
+<p>
+  <b>Categorized:</b>
+  <%= money(@balance.categorized) %>
+</p>
+
 <% if @balance.error != 0 %>
-<p style="textcolor: red;">
+<p style="color: red;">
   <b>Error:</b>
   <%= money(@balance.error) %>
 </p>

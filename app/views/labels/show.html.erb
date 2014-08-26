@@ -1,20 +1,21 @@
-<p id="notice"><%= notice %></p>
+<h3>Labels</h3>
+
+<h1>
+  <%= @label.category %>
+</h1>
 
 <p>
   <b>Amount:</b>
-  <%= @label.amount %>
+  <%= money(@label.amount) %>
 </p>
 
 <p>
   <b>Transaction:</b>
-  <%= @label.transaction_id %>
-</p>
-
-<p>
-  <b>Category:</b>
-  <%= @label.category_id %>
+  <%= money(@label.transaction.amount) %>:
+  <%= @label.transaction.text %>
 </p>
 
 
 <%= link_to 'Edit', edit_label_path(@label) %> |
-<%= link_to 'Back', labels_path %>
+<%= link_to 'Destroy', @label, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<%= link_to 'Back', @label.transaction %>

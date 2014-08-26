@@ -9,7 +9,7 @@
   </tr>
   <% transaction.labels.each do |label| %>
     <tr>
-      <td><%= link_to label.category, label.category %></td>
+      <td><%= link_to label.category, label %></td>
       <td align="right"><%= money label.amount %></td>
     </tr>
   <% end %>
