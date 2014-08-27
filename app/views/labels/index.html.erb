@@ -34,24 +34,25 @@
 
 <% transactions_by_sign = @transactions.group_by(&:sign) %>
 <% "+-".chars.each do |sign| %>
+  <% transactions = transactions_by_sign[sign] %>
   <h2><%= sign %></h2>
-  <%= money transactions_by_sign[sign].map(&:amount).sum %>
+  <table>
+  <% transactions.map(&:labels).sum.group_by(&:category).each do |cat, labels| %>
+  <tr><th><%= cat %>:</th><td align="right"><%= money labels.map(&:amount).sum %></td></tr>
+  <% end %>
+  <tr><th>Sum:</th><td align="right"><%= money transactions.map(&:amount).sum %></td></tr>
+  </table>
 <% end %>
 
 <p>
-<b>Sum:</b> 
-<%= money @transactions.map(&:amount).sum %>
-</p>
-
-<p>
-<b>Difference:</b> 
-<% difference = transactions_by_sign["+"].map(&:amount).sum + transactions_by_sign["-"].map(&:amount).sum %>
-<%= money difference %>
+<b>Total:</b> 
+<% total = @transactions.map(&:amount).sum %>
+<%= money total %>
 </p>
 
 <p>
 <b>Error:</b> 
-<%= money movement - difference %>
+<%= money movement - total %>
 </p>
 
 
