@@ -1,27 +1,57 @@
-<h1>Listing labels</h1>
-
-<table>
-  <tr>
-    <th>Amount</th>
-    <th>Transaction</th>
-    <th>Category</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @labels.each do |label| %>
-  <tr>
-    <td><%= label.amount %></td>
-    <td><%= label.transaction_id %></td>
-    <td><%= label.category_id %></td>
-    <td><%= link_to 'Show', label %></td>
-    <td><%= link_to 'Edit', edit_label_path(label) %></td>
-    <td><%= link_to 'Destroy', label, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+<% content_for :side do %>
+<h3>Reports</h3>
+<ul>
+<% @transactions_by_year.keys.sort.reverse.each do |key| %>
+<li>
+<%= link_to_unless_current key, labels_path(:year => key) %>
+</li>
 <% end %>
-</table>
+</ul>
+<% end %>
 
-<br />
+<h1>Report <%= @year %></h1>
 
-<%= link_to 'New Label', new_label_path %>
+<h3>Current Account</h3>
+
+<p>
+<b>Opening Balance:</b> 
+<% opening = @transactions.first.balance.previous.balance %>
+<%= money opening %>
+</p>
+
+<p>
+<b>Closing Balance:</b> 
+<% closing = @transactions.last.balance.balance %>
+<%= money closing %>
+</p>
+<p>
+
+<p>
+<b>Movement:</b> 
+<% movement = closing - opening %>
+<%= money movement %>
+</p>
+
+<% transactions_by_sign = @transactions.group_by(&:sign) %>
+<% "+-".chars.each do |sign| %>
+  <h2><%= sign %></h2>
+  <%= money transactions_by_sign[sign].map(&:amount).sum %>
+<% end %>
+
+<p>
+<b>Sum:</b> 
+<%= money @transactions.map(&:amount).sum %>
+</p>
+
+<p>
+<b>Difference:</b> 
+<% difference = transactions_by_sign["+"].map(&:amount).sum + transactions_by_sign["-"].map(&:amount).sum %>
+<%= money difference %>
+</p>
+
+<p>
+<b>Error:</b> 
+<%= money movement - difference %>
+</p>
+
+

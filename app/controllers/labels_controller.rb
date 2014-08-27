@@ -3,6 +3,10 @@ class LabelsController < ApplicationController
   # GET /labels.json
   def index
     @labels = Label.all
+    @transactions = Transaction.all
+    @transactions_by_year = @transactions.group_by(&:year)
+    @year = params[:year] || @transactions_by_year.keys.sort.last
+    @transactions = @transactions_by_year[@year.to_i]
 
     respond_to do |format|
       format.html # index.html.erb

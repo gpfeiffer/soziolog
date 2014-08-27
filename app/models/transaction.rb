@@ -7,6 +7,16 @@ class Transaction < ActiveRecord::Base
   has_many :labels, :dependent => :destroy
   has_many :categories, :through => :labels
 
+  default_scope :order => :date
+
+  def year
+    date.year
+  end
+
+  def sign
+    "++-"[amount <=> 0]
+  end
+
   def categorized
     labels.map(&:amount).sum
   end
