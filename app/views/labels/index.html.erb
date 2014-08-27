@@ -14,13 +14,13 @@
 <h3>Current Account</h3>
 
 <p>
-<b>Opening Balance:</b> 
+<b>Opening Balance <%= @transactions.first.balance.previous.date %>:</b> 
 <% opening = @transactions.first.balance.previous.balance %>
 <%= money opening %>
 </p>
 
 <p>
-<b>Closing Balance:</b> 
+<b>Closing Balance <%= @transactions.last.date %>:</b> 
 <% closing = @transactions.last.balance.balance %>
 <%= money closing %>
 </p>
