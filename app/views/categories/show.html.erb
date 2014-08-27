@@ -1,11 +1,26 @@
-<h3>Categories</h3>
+<h3>Categories <%= @year %></h3>
 
 <h1><%= @category.name %></h1>
 
 <p>
   <b>Description:</b>
-  <%= @category.description %>
+  <%= @category.description %> 
 </p>
+
+<table>
+<% @labels.each do |label| %>
+<tr>
+  <td><%= label.transaction.date %></td>
+  <td><%= link_to label.transaction.text, label.transaction %></td>
+  <td align="right"><%= money label.amount %></td>
+</tr>
+<% end %>
+<tr>
+  <td></td>
+  <th>Sum</th>
+  <td align="right"><%= money @labels.map(&:amount).sum %></td>
+</tr>
+</table>
 
 <%= link_to 'Edit', edit_category_path(@category) %> |
 <%= link_to 'Destroy', @category, method: :delete, data: { confirm: 'Are you sure?' } %> |

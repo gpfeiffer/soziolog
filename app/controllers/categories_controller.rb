@@ -14,6 +14,8 @@ class CategoriesController < ApplicationController
   # GET /categories/1.json
   def show
     @category = Category.find(params[:id])
+    @year = params[:year].to_i
+    @labels = Label.where(:category_id => @category.id).select { |x| x.transaction.year == @year }
 
     respond_to do |format|
       format.html # show.html.erb
