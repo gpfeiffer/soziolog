@@ -30,6 +30,7 @@ class LabelsController < ApplicationController
   def new
     @label = Label.new
     @label.transaction = Transaction.find(params[:transaction_id])
+    @label.amount = @label.transaction.amount - @label.transaction.labels.map(&:amount).sum
 
     respond_to do |format|
       format.html # new.html.erb
