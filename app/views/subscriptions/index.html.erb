@@ -1,33 +1,33 @@
-<h1>Listing subscriptions</h1>
+<% content_for :side do %>
+<h3>Subscriptions</h3>
+<ul>
+<% @subscriptions_by_year.keys.sort.reverse.each do |key| %>
+<li>
+<%= link_to_unless_current key, subscriptions_path(:year => key) %>
+</li>
+<% end %>
+</ul>
+<% end %>
+
+<h1>Subscriptions <%= @year %></h1>
+
+<b>Total:</b> EUR <%= money @subscriptions.map(&:payment).sum %>
 
 <table>
   <tr>
-    <th>Year</th>
+    <th>Date</th>
     <th>Member</th>
-    <th>Transaction</th>
     <th>Value</th>
     <th>Payment</th>
-    <th>Paid on</th>
-    <th></th>
-    <th></th>
-    <th></th>
   </tr>
 
 <% @subscriptions.each do |subscription| %>
   <tr>
-    <td><%= subscription.year %></td>
-    <td><%= subscription.member_id %></td>
-    <td><%= subscription.transaction_id %></td>
-    <td><%= subscription.value %></td>
-    <td><%= subscription.payment %></td>
-    <td><%= subscription.paid_on %></td>
-    <td><%= link_to 'Show', subscription %></td>
-    <td><%= link_to 'Edit', edit_subscription_path(subscription) %></td>
-    <td><%= link_to 'Destroy', subscription, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to subscription.transaction.date, subscription.transaction %></td>
+    <td><%= link_to subscription.member.number, subscription.member %></td>
+    <td align="right"><%= subscription.currency %> <%= money(subscription.value) %></td>
+    <td align="right"><%= money(subscription.payment) %></td>
   </tr>
 <% end %>
 </table>
 
-<br />
-
-<%= link_to 'New Subscription', new_subscription_path %>
