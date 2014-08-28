@@ -50,6 +50,10 @@ class Member < ActiveRecord::Base
     "RISCO".include? status and not subscriptions.map(&:year).include? '2014' and comment != "ITT paying"
   end
 
+  def first_year
+    (number[0, 2].to_i - 1970) % 100 + 1970
+  end
+
   def institute
     Member.find_by_number(self.number[0,4]) if status == "N"
   end
