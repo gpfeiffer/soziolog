@@ -13,7 +13,7 @@
 
 <b>Total:</b> EUR <%= money @subscriptions.map(&:payment).sum %>
 <% if @year.to_i.to_s == @year %>
-<b>Arrears:</b> EUR <%= money Member.all.map { |x| x.arrears(@year.to_i) }.sum %>
+<b>Arrears:</b> EUR <%= money Member.where(:status => %w{C R O S I}).map { |x| x.arrears(@year.to_i) }.sum %>
 <% end %>
 
 <table>
@@ -41,7 +41,7 @@
   <th>Member</th>
   <th>Amount</th>
 </tr>
-<% Member.where(:status => %w{C R O S}).each do |member| %>
+<% Member.where(:status => %w{C R O S I}).each do |member| %>
 <% arrears = member.arrears(@year.to_i) %>
 <% if arrears != 0 %>
 <tr>
