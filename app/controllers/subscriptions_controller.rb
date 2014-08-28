@@ -50,7 +50,7 @@ puts @subscriptions.count
   def create
     respond_to do |format|
       if @subscription.save
-        format.html { redirect_to @subscription, notice: 'Subscription was successfully created.' }
+        format.html { redirect_to @subscription.transaction, notice: 'Subscription was successfully created.' }
         format.json { render json: @subscription, status: :created, location: @subscription }
       else
         format.html { render action: "new" }
@@ -64,7 +64,7 @@ puts @subscriptions.count
   def update
     respond_to do |format|
       if @subscription.update_attributes(params[:subscription])
-        format.html { redirect_to @subscription, notice: 'Subscription was successfully updated.' }
+        format.html { redirect_to @subscription.transaction, notice: 'Subscription was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -79,7 +79,7 @@ puts @subscriptions.count
     @subscription.destroy
 
     respond_to do |format|
-      format.html { redirect_to subscriptions_url }
+      format.html { redirect_to @subscription.transaction }
       format.json { head :no_content }
     end
   end
