@@ -62,4 +62,5 @@
 
 
 <%= link_to 'Edit', edit_balance_path(@balance) %> |
-<%= link_to 'Back', balances_path %>
+<%= link_to 'Destroy', @balance, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<%= link_to 'Back', balances_path(:year => @balance.date.year) %>

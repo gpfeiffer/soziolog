@@ -4,7 +4,7 @@ class Balance < ActiveRecord::Base
   belongs_to :previous, :class_name => 'Balance'
   has_one :next, :class_name => 'Balance', :foreign_key => :previous_id
 
-  has_many :transactions
+  has_many :transactions, :dependent => :destroy
 
   default_scope :order => :date
 
