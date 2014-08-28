@@ -18,6 +18,19 @@ class Member < ActiveRecord::Base
     "P" => "pending",
   }
 
+  FEES = {
+    "O" => 2500,
+    "S" => 1250,
+    "H" => 0,
+    "L" => 0,
+    "R" => 1250,
+    "I" => 16000,
+    "N" => 0,
+    "D" => 0,
+    "C" => 1250,
+    "P" => 2500,
+  }
+
   BULLETIN = %w{ yes no }
 
   validates :number, :presence => true, :uniqueness => true
@@ -46,12 +59,23 @@ class Member < ActiveRecord::Base
     "SCHNORL".include? status    
   end
 
+  def paying?
+    "SCOR".include? status    
+  end
+
   def arrears?
     "RISCO".include? status and not subscriptions.map(&:year).include? '2014' and comment != "ITT paying"
   end
 
   def first_year
     (number[0, 2].to_i - 1970) % 100 + 1970
+  end
+
+  def arrears(year)
+    year = year
+    return 0 if year < first_year
+    return 0 if subscriptions.map(&:year).include? year.to_s
+    return FEES[status]
   end
 
   def institute
