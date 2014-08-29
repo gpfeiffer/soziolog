@@ -46,7 +46,7 @@
 
 <p>
 <b>Total:</b> 
-<% total = @transactions.map(&:amount).sum %>
+<% total = @labels.map(&:amount).sum %>
 <%= money total %>
 </p>
 
