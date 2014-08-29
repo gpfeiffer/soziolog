@@ -8,6 +8,7 @@ class LabelsController < ApplicationController
     @transactions_by_year = @transactions.group_by(&:year)
     @year = params[:year] || @transactions_by_year.keys.sort.last
     @transactions = @transactions_by_year[@year.to_i]
+    @labels = @transactions.map(&:labels).sum
 
     respond_to do |format|
       format.html # index.html.erb

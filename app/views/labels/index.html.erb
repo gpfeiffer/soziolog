@@ -32,17 +32,15 @@
 <%= money movement %>
 </p>
 
-<% transactions_by_sign = @transactions.group_by(&:sign) %>
+<% labels_by_sign = @labels.group_by(&:sign) %>
 <table>
 <% "+-".chars.each do |sign| %>
-  <% transactions = transactions_by_sign[sign] %>
-  <% labels = transactions.map(&:labels).sum %>
+  <% labels = labels_by_sign[sign] %>
   <th colspan="2"><%= sign %></th>
   <% labels.group_by(&:category).each do |cat, labels_cat| %>
   <tr><th align="left"><%= link_to cat, category_path(cat, :year => @year) %>:</th><td align="right"><%= money labels_cat.map(&:amount).sum %></td></tr>
   <% end %>
-  <tr><th align="left">Missing:</th><td align="right"><%= money (transactions.map(&:amount).sum - labels.map(&:amount).sum) %></td></tr>
-  <tr><th align="left">Sum:</th><td align="right"><%= money transactions.map(&:amount).sum %></td></tr>
+  <tr><th align="left">Sum:</th><td align="right"><%= money labels.map(&:amount).sum %></td></tr>
 <% end %>
 </table>
 
