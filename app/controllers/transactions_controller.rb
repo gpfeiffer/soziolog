@@ -4,6 +4,10 @@ class TransactionsController < ApplicationController
   # GET /transactions
   # GET /transactions.json
   def index
+    @transactions_by_year = @transactions.group_by(&:year)
+    @year = params[:year] || @transactions_by_year.keys.sort.last
+    @transactions = @transactions_by_year[@year.to_i]
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @transactions }
