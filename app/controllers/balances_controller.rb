@@ -1,8 +1,9 @@
 class BalancesController < ApplicationController
+  load_and_authorize_resource
+
   # GET /balances
   # GET /balances.json
   def index
-    @balances = Balance.all
     @balances_by_year = @balances.group_by(&:year)
     @year = params[:year] || @balances_by_year.keys.sort.last
     @balances = @balances_by_year[@year.to_i]
@@ -16,8 +17,6 @@ class BalancesController < ApplicationController
   # GET /balances/1
   # GET /balances/1.json
   def show
-    @balance = Balance.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @balance }
@@ -27,8 +26,6 @@ class BalancesController < ApplicationController
   # GET /balances/new
   # GET /balances/new.json
   def new
-    @balance = Balance.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @balance }
@@ -37,14 +34,11 @@ class BalancesController < ApplicationController
 
   # GET /balances/1/edit
   def edit
-    @balance = Balance.find(params[:id])
   end
 
   # POST /balances
   # POST /balances.json
   def create
-    @balance = Balance.new(params[:balance])
-
     respond_to do |format|
       if @balance.save
         format.html { redirect_to @balance, notice: 'Balance was successfully created.' }
@@ -59,8 +53,6 @@ class BalancesController < ApplicationController
   # PUT /balances/1
   # PUT /balances/1.json
   def update
-    @balance = Balance.find(params[:id])
-
     respond_to do |format|
       if @balance.update_attributes(params[:balance])
         format.html { redirect_to @balance, notice: 'Balance was successfully updated.' }
@@ -75,7 +67,6 @@ class BalancesController < ApplicationController
   # DELETE /balances/1
   # DELETE /balances/1.json
   def destroy
-    @balance = Balance.find(params[:id])
     @balance.destroy
 
     respond_to do |format|

@@ -1,8 +1,9 @@
 class LabelsController < ApplicationController
+  load_and_authorize_resource
+
   # GET /labels
   # GET /labels.json
   def index
-    @labels = Label.all
     @transactions = Transaction.all
     @transactions_by_year = @transactions.group_by(&:year)
     @year = params[:year] || @transactions_by_year.keys.sort.last
@@ -17,8 +18,6 @@ class LabelsController < ApplicationController
   # GET /labels/1
   # GET /labels/1.json
   def show
-    @label = Label.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @label }
@@ -28,7 +27,6 @@ class LabelsController < ApplicationController
   # GET /labels/new
   # GET /labels/new.json
   def new
-    @label = Label.new
     @label.transaction = Transaction.find(params[:transaction_id])
     @label.amount = @label.transaction.amount - @label.transaction.labels.map(&:amount).sum
 
@@ -40,14 +38,11 @@ class LabelsController < ApplicationController
 
   # GET /labels/1/edit
   def edit
-    @label = Label.find(params[:id])
   end
 
   # POST /labels
   # POST /labels.json
   def create
-    @label = Label.new(params[:label])
-
     respond_to do |format|
       if @label.save
         format.html { redirect_to @label.transaction, notice: 'Label was successfully created.' }
@@ -62,8 +57,6 @@ class LabelsController < ApplicationController
   # PUT /labels/1
   # PUT /labels/1.json
   def update
-    @label = Label.find(params[:id])
-
     respond_to do |format|
       if @label.update_attributes(params[:label])
         format.html { redirect_to @label.transaction, notice: 'Label was successfully updated.' }
@@ -78,7 +71,6 @@ class LabelsController < ApplicationController
   # DELETE /labels/1
   # DELETE /labels/1.json
   def destroy
-    @label = Label.find(params[:id])
     @label.destroy
 
     respond_to do |format|

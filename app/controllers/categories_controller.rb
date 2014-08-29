@@ -1,9 +1,9 @@
 class CategoriesController < ApplicationController
+  load_and_authorize_resource
+
   # GET /categories
   # GET /categories.json
   def index
-    @categories = Category.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @categories }
@@ -13,7 +13,6 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
-    @category = Category.find(params[:id])
     @year = params[:year].to_i
     @labels = Label.where(:category_id => @category.id).select { |x| x.transaction.year == @year }
 
@@ -26,8 +25,6 @@ class CategoriesController < ApplicationController
   # GET /categories/new
   # GET /categories/new.json
   def new
-    @category = Category.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @category }
@@ -36,14 +33,11 @@ class CategoriesController < ApplicationController
 
   # GET /categories/1/edit
   def edit
-    @category = Category.find(params[:id])
   end
 
   # POST /categories
   # POST /categories.json
   def create
-    @category = Category.new(params[:category])
-
     respond_to do |format|
       if @category.save
         format.html { redirect_to @category, notice: 'Category was successfully created.' }
@@ -58,8 +52,6 @@ class CategoriesController < ApplicationController
   # PUT /categories/1
   # PUT /categories/1.json
   def update
-    @category = Category.find(params[:id])
-
     respond_to do |format|
       if @category.update_attributes(params[:category])
         format.html { redirect_to @category, notice: 'Category was successfully updated.' }
@@ -74,7 +66,6 @@ class CategoriesController < ApplicationController
   # DELETE /categories/1
   # DELETE /categories/1.json
   def destroy
-    @category = Category.find(params[:id])
     @category.destroy
 
     respond_to do |format|
