@@ -14,7 +14,7 @@
 <tr>
   <td><%= subscription.member %></td>
   <td><%= link_to subscription.member.number, subscription.member %></td>
-  <td><%= subscription.year %></td>
+  <td><%= link_to subscription.year, subscription %></td>
   <td align="right"><%= subscription.currency %> <%= money subscription.value %></td>
   <td align="right"><%= money subscription.payment %></td>
 </tr>
