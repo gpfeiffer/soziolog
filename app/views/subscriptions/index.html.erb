@@ -18,14 +18,18 @@
 
 <table>
   <tr>
+    <th></th>
     <th>Date</th>
     <th>Member</th>
     <th>Value</th>
     <th>Payment</th>
   </tr>
 
+<% pos = 0 %>
 <% @subscriptions.each do |subscription| %>
+  <% pos +=1 %>
   <tr>
+    <td align="right"><%= pos %>.</td>
     <td><%= link_to subscription.transaction.date, subscription.transaction %></td>
     <td><%= link_to subscription.member.number, subscription.member %></td>
     <td align="right"><%= subscription.currency %> <%= money(subscription.value) %></td>
@@ -38,13 +42,17 @@
 <h2>Arrears <%= @year %></h2>
 <table>
 <tr>
+  <th></th>
   <th>Member</th>
   <th>Amount</th>
 </tr>
+<% pos = 0 %>
 <% Member.where(:status => %w{C R O S I}).each do |member| %>
 <% arrears = member.arrears(@year.to_i) %>
 <% if arrears != 0 %>
+<% pos +=1 %>
 <tr>
+  <td align="right"><%= pos %>.</td>
   <td><%= link_to member.number, member %></td>
   <td><%= money(arrears) %></td>
 </tr>
