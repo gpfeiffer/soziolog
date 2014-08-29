@@ -28,7 +28,7 @@ class Member < ActiveRecord::Base
     "N" => 0,
     "D" => 0,
     "C" => 1250,
-    "P" => 2500,
+    "P" => 0,
   }
 
   BULLETIN = %w{ yes no }
