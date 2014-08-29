@@ -50,8 +50,8 @@ Student Nominees:
 <% @member.subscriptions.sort_by(&:year).reverse.each do |subscription| %>
 <tr>
   <td><%= link_to subscription.year, subscription %></td>
-  <td><%= subscription.value %></td>
-  <td><%= subscription.payment %></td>
+  <td><%= subscription.currency %> <%= money subscription.value %></td>
+  <td><%= money subscription.payment %></td>
   <td><%= link_to subscription.paid_on, subscription.transaction %></td>
 </tr>
 <% end %>
