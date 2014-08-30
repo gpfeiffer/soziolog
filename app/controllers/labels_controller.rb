@@ -12,6 +12,7 @@ class LabelsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
+      format.tex
       format.json { render json: @labels }
     end
   end

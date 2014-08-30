@@ -1,0 +1,65 @@
+\thispagestyle{empty}
+\begin{center}
+  \textbf{\uppercase{Treasurer's Report <%= @year %>}}
+
+  \medskip
+  \uppercase{Receipts / Payments}
+
+  \medskip
+  <% fmt = "%-d %B %Y" %>
+  <%= (@transactions.first.balance.previous.date + 1).strftime(fmt) -%>
+  -- <%= @transactions.last.date.strftime(fmt) %>
+\end{center}
+\bigskip\smallskip
+<% labels_by_sign = @labels.group_by(&:sign) %>
+<% pm = { "+" => "Receipts", "-" => "Payments" } %>
+<% total = @labels.map(&:amount).sum %>
+<% verdict = total < 0 ? "Shortfall" : "Surplus" %>
+\begin{center}
+\begin{tabular}{llr}
+<% "+-".chars.each do |sign| %>
+  <% labels = labels_by_sign[sign] %>
+  <%= pm[sign]%> :&& EUR \\
+  <% labels.group_by(&:category).each do |cat, labels_cat| %>
+    & <%= cat %> & <%= money labels_cat.map(&:amount).sum.abs %> \\
+  <% end %>
+  &&\\
+  <%= pm[sign]%> Total: && <%= money labels.map(&:amount).sum.abs %> \\[4ex]
+<% end %>
+<%= verdict %>: && <%= money total.abs %> \\
+(<%= verdict %> on current account: && <%= money total.abs %>) \\
+\end{tabular}
+\end{center}
+
+\bigskip
+\hrule
+\bigskip
+
+\begin{center}
+  Movement on Cash and Bank Balances
+
+  <%= (@transactions.first.balance.previous.date + 1).strftime(fmt) -%>
+  -- <%= @transactions.last.date.strftime(fmt) %>
+
+\medskip
+<% opening = @transactions.first.balance.previous.balance %>
+<% closing = @transactions.last.balance.balance %>
+<% savings = 349961 %>
+\begin{tabular}{lr}
+& Euro \\
+Current account: & \\
+Opening Balance & <%= money opening %>  \\
+<%= verdict %> & <%= money total %> \\
+Closing Balance & <%= money closing %> \\
+\medskip \\
+Savings Certificates & <%= money savings %> \\
+Current Account & <%= money closing %> \\
+Closing Balance & <%= money (savings + closing) %>
+\end{tabular}
+\end{center}
+
+\medskip
+\hfill{ G\"otz Pfeiffer,}
+
+\hfill{Hon. Treasurer}
+
