@@ -2,6 +2,7 @@
       <% transaction.subscriptions.each do |subscription| %>
         <%= link_to subscription.member.number, subscription.member %>
       <% end %>
+<% if transaction.subscriptions.any? %>
       <table>
 	<tr>
 	  <th>Member</th>
@@ -26,3 +27,4 @@
 	<td align="right"><%= money transaction.subscriptions.map(&:payment).sum %></td>
 </tr>
 </table>
+<% end %>

@@ -2,6 +2,7 @@
   Labels: <%= link_to '[+]', new_label_path(:transaction_id => transaction) %>
 </b>
 
+<% if transaction.labels.any? %>
 <table>
   <tr>
     <th>Category</th>
@@ -20,3 +21,4 @@
     </td>
   </tr>
 </table>
+<% end %>
