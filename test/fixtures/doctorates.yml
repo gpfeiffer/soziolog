@@ -5,7 +5,7 @@ one:
   last: MyString
   university: MyString
   title: MyString
-  year: 1
+  year: 2001
   advisor: MyString
   thesis: MyString
   genealogy_id: 1
@@ -15,7 +15,7 @@ two:
   last: MyString
   university: MyString
   title: MyString
-  year: 1
+  year: 2002
   advisor: MyString
   thesis: MyString
   genealogy_id: 1

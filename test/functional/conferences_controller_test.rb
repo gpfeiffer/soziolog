@@ -3,6 +3,8 @@ require 'test_helper'
 class ConferencesControllerTest < ActionController::TestCase
   setup do
     @conference = conferences(:one)
+    @user = users(:me)
+    sign_in @user
   end
 
   test "should get index" do

@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  amount: 1
-  transaction_id: 1
-  category_id: 1
+  amount: 2500
+  transaction: one
+  category: good
 
 two:
-  amount: 1
-  transaction_id: 1
-  category_id: 1
+  amount: 1200
+  transaction: two
+  category: ugly

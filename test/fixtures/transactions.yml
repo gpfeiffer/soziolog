@@ -1,13 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  date: 2014-06-17
+  date: 2013-12-31
   text: MyString
-  amount: 1
+  amount: 1000
   comment: MyText
+  balance: one
 
 two:
   date: 2014-06-17
   text: MyString
-  amount: 1
+  amount: -900
   comment: MyText
+  balance: two

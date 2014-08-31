@@ -2,7 +2,9 @@ require 'test_helper'
 
 class BalancesControllerTest < ActionController::TestCase
   setup do
-    @balance = balances(:one)
+    @balance = balances(:two)
+    @user = users(:me)
+    sign_in @user
   end
 
   test "should get index" do
@@ -18,7 +20,11 @@ class BalancesControllerTest < ActionController::TestCase
 
   test "should create balance" do
     assert_difference('Balance.count') do
-      post :create, balance: { balance: @balance.balance, date: @balance.date, previous_id: @balance.previous_id }
+      post :create, balance: { 
+        balance: @balance.balance - 100, 
+        date: @balance.date + 1, 
+        previous_id: @balance.id 
+      }
     end
 
     assert_redirected_to balance_path(assigns(:balance))

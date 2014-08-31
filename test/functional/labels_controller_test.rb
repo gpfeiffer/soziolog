@@ -3,6 +3,9 @@ require 'test_helper'
 class LabelsControllerTest < ActionController::TestCase
   setup do
     @label = labels(:one)
+    @transaction = transactions(:one)
+    @user = users(:me)
+    sign_in @user
   end
 
   test "should get index" do
@@ -12,16 +15,19 @@ class LabelsControllerTest < ActionController::TestCase
   end
 
   test "should get new" do
-    get :new
+    get :new, transaction_id: @transaction
     assert_response :success
   end
 
   test "should create label" do
     assert_difference('Label.count') do
-      post :create, label: { amount: @label.amount, category_id: @label.category_id, transaction_id: @label.transaction_id }
+      post :create, label: { 
+        amount: @label.amount, 
+        category_id: @label.category_id, 
+        transaction_id: @label.transaction_id 
+      }
     end
-
-    assert_redirected_to label_path(assigns(:label))
+    assert_redirected_to transaction_path(assigns(:label).transaction)
   end
 
   test "should show label" do
@@ -35,15 +41,18 @@ class LabelsControllerTest < ActionController::TestCase
   end
 
   test "should update label" do
-    put :update, id: @label, label: { amount: @label.amount, category_id: @label.category_id, transaction_id: @label.transaction_id }
-    assert_redirected_to label_path(assigns(:label))
+    put :update, id: @label, label: { 
+      amount: @label.amount, 
+      category_id: @label.category_id, 
+      transaction_id: @label.transaction_id 
+    }
+    assert_redirected_to transaction_path(assigns(:label).transaction)
   end
 
   test "should destroy label" do
     assert_difference('Label.count', -1) do
       delete :destroy, id: @label
     end
-
-    assert_redirected_to labels_path
+    assert_redirected_to transaction_path(assigns(:label).transaction)
   end
 end

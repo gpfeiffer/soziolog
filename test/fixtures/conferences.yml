@@ -1,19 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  call: MyString
+  call: 2014-1
   name: MyString
-  host: MyString
+  host: Uni1
   date: 2014-01-23
+  length: 1	
   applicant: MyString
   description: MyText
-  funding: 1
+  funding: 250
 
 two:
-  call: MyString
+  call: 2014-2
   name: MyString
-  host: MyString
+  host: Uni2
   date: 2014-01-23
+  length: 2
   applicant: MyString
   description: MyText
-  funding: 1
+  funding: 300

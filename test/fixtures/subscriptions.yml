@@ -1,17 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  year: MyString
-  member_id: 1
-  transaction_id: 1
-  value: 1
-  payment: 1
-  paid_on: 2014-06-20
+  year: 2014
+  member: one
+  transaction: one
+  value: 2500
+  payment: 2500
+  paid_on: 2014-01-31
+  currency: EUR
 
 two:
-  year: MyString
-  member_id: 1
-  transaction_id: 1
-  value: 1
-  payment: 1
-  paid_on: 2014-06-20
+  year: 2014
+  member: two
+  transaction: two
+  value: 1250
+  payment: 1250
+  paid_on: 2014-02-01
+  currency: EUR

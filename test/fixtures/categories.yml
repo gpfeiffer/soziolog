@@ -1,9 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  name: MyString
+good:
+  name: good
   description: MyText
 
-two:
-  name: MyString
+bad:
+  name: bad
+  description: MyText
+
+ugly:
+  name: ugly
   description: MyText

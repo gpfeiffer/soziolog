@@ -1,21 +1,23 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  number: MyString
-  title: MyString
+  number: 14001
+  title: Dr
   surname: MyString
   forename: MyString
   address: MyText
   email: MyString
-  status: MyString
+  status: O
   comment: MyString
+  bulletin: 'yes'
 
 two:
-  number: MyString
-  title: MyString
+  number: 14002
+  title: Prof.
   surname: MyString
   forename: MyString
   address: MyText
   email: MyString
-  status: MyString
+  status: R
   comment: MyString
+  bulletin: 'no'

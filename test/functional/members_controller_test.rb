@@ -3,6 +3,8 @@ require 'test_helper'
 class MembersControllerTest < ActionController::TestCase
   setup do
     @member = members(:one)
+    @user = users(:me)
+    sign_in @user
   end
 
   test "should get index" do
@@ -18,7 +20,17 @@ class MembersControllerTest < ActionController::TestCase
 
   test "should create member" do
     assert_difference('Member.count') do
-      post :create, member: { address: @member.address, comment: @member.comment, email: @member.email, forename: @member.forename, number: @member.number, status: @member.status, surname: @member.surname, title: @member.title }
+      post :create, member: { 
+        address: @member.address, 
+        bulletin: @member.bulletin,
+        comment: @member.comment, 
+        email: @member.email, 
+        forename: @member.forename, 
+        number: '99999', 
+        status: @member.status, 
+        surname: @member.surname, 
+        title: @member.title 
+      }
     end
 
     assert_redirected_to member_path(assigns(:member))
@@ -35,7 +47,17 @@ class MembersControllerTest < ActionController::TestCase
   end
 
   test "should update member" do
-    put :update, id: @member, member: { address: @member.address, comment: @member.comment, email: @member.email, forename: @member.forename, number: @member.number, status: @member.status, surname: @member.surname, title: @member.title }
+    put :update, id: @member, member: { 
+      address: @member.address, 
+        bulletin: @member.bulletin,
+      comment: @member.comment, 
+      email: @member.email, 
+      forename: @member.forename, 
+      number: @member.number, 
+      status: @member.status, 
+      surname: @member.surname, 
+      title: @member.title 
+    }
     assert_redirected_to member_path(assigns(:member))
   end
 

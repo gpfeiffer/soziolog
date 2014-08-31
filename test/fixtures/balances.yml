@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  balance: 1
-  date: 2014-08-20
-  previous_id: 1
+  balance: 1000
+  date: 2014-01-01
+  previous: one
 
 two:
-  balance: 1
+  balance: 1200
   date: 2014-08-20
-  previous_id: 1
+  previous: one
