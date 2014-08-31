@@ -8,9 +8,6 @@ class SubscriptionsController < ApplicationController
     @year = params[:year] || @subscriptions_by_year.keys.sort.last
     @subscriptions = @subscriptions_by_year[@year]
 
-puts @year
-puts @subscriptions.count
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @subscriptions }
