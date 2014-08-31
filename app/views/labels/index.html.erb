@@ -12,47 +12,48 @@
 <h1>Report <%= @year %></h1>
 
 <h3>Current Account</h3>
-
-<p>
-<b>Opening Balance <%= @transactions.first.balance.previous.date %>:</b> 
 <% opening = @transactions.first.balance.previous.balance %>
-<%= money opening %>
-</p>
-
-<p>
-<b>Closing Balance <%= @transactions.last.date %>:</b> 
 <% closing = @transactions.last.balance.balance %>
-<%= money closing %>
-</p>
-<p>
-
-<p>
-<b>Movement:</b> 
 <% movement = closing - opening %>
-<%= money movement %>
-</p>
-
 <% labels_by_sign = @labels.group_by(&:sign) %>
-<table>
-<% "+-".chars.each do |sign| %>
-  <% labels = labels_by_sign[sign] %>
-  <th colspan="2"><%= sign %></th>
-  <% labels.group_by(&:category).each do |cat, labels_cat| %>
-  <tr><th align="left"><%= link_to cat, category_path(cat, :year => @year) %>:</th><td align="right"><%= money labels_cat.map(&:amount).sum %></td></tr>
-  <% end %>
-  <tr><th align="left">Sum:</th><td align="right"><%= money labels.map(&:amount).sum %></td></tr>
-<% end %>
-</table>
-
-<p>
-<b>Total:</b> 
 <% total = @labels.map(&:amount).sum %>
-<%= money total %>
-</p>
-
-<p>
-<b>Error:</b> 
-<%= money movement - total %>
-</p>
+<% error = movement - total %>
+<table>
+  <tr>
+    <th align="left">Opening Balance <%= @transactions.first.balance.previous.date %>:</th> 
+    <td align="right"><%= money opening %></td>
+  </tr>
+  <tr>
+    <th align="left">Closing Balance <%= @transactions.last.date %>:</th> 
+    <td align="right"><%= money closing %></td>
+  </tr>
+  <tr>
+    <th align="left">Movement:</th>
+    <td align="right"><%= money movement %><td>
+  </tr>
+  <% "+-".chars.each do |sign| %>
+    <% labels = labels_by_sign[sign] %>
+    <th colspan="2"><%= sign %></th>
+    <% labels.group_by(&:category).each do |cat, labels_cat| %>
+      <tr>
+        <th align="left"><%= link_to cat, category_path(cat, :year => @year) %>:</th>
+        <td align="right"><%= money labels_cat.map(&:amount).sum %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <th align="left">Sum:</th>
+      <td align="right"><%= money labels.map(&:amount).sum %></td>
+    </tr>
+  <% end %>
+  <tr><td>&nbsp;</td></tr>
+  <tr>
+    <th align="left">(Total:</th> 
+    <td align="right"><%= money total %>)</td>
+  </tr>
+  <tr>
+    <th align="left">(Error:</th> 
+    <td align="right"><%= money error %>)</td>
+  </tr>
+</table>
 
 
