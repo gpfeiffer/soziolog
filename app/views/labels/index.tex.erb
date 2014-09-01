@@ -14,7 +14,7 @@
 <% labels_by_sign = @labels.group_by(&:sign) %>
 <% pm = { "+" => "Receipts", "-" => "Payments" } %>
 <% total = @labels.map(&:amount).sum %>
-<% verdict = total < 0 ? "Shortfall" : "Surplus" %>
+<% op, verdict = total < 0 ? %w{Less Shortfall} : %w{Plus Surplus} %>
 \begin{center}
 \begin{tabular}{llr}
 <% "+-".chars.each do |sign| %>
@@ -41,15 +41,14 @@
   <%= (@transactions.first.balance.previous.date + 1).strftime(fmt) -%>
   -- <%= @transactions.last.date.strftime(fmt) %>
 
-\medskip
+\bigskip
 <% opening = @transactions.first.balance.previous.balance %>
 <% closing = @transactions.last.balance.balance %>
 <% savings = 349961 %>
 \begin{tabular}{lr}
-& Euro \\
-Current account: & \\
+Current account: & Euro \\
 Opening Balance & <%= money opening %>  \\
-<%= verdict %> & <%= money total %> \\
+<%= op %> <%= verdict %> & <%= money total %> \\
 Closing Balance & <%= money closing %> \\
 \medskip \\
 Savings Certificates & <%= money savings %> \\
