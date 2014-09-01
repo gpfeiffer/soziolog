@@ -9,7 +9,7 @@
 
 <% @categories.each do |category| %>
   <tr>
-    <td><%= category.rank %></td>
+    <td align="right"><%= category.rank %></td>
     <td><%= link_to category.name, category %></td>
     <td><%= category.description %></td>
   </tr>
