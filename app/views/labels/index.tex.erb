@@ -1,6 +1,6 @@
 \thispagestyle{empty}
 \begin{center}
-  \textbf{\uppercase{Treasurer's Report <%= @year %>}}
+  \textbf{\uppercase{Treasurer's Report for <%= @year %>}}
 
   \medskip
   \uppercase{Receipts / Payments}
@@ -20,7 +20,7 @@
 <% "+-".chars.each do |sign| %>
   <% labels = labels_by_sign[sign] %>
   <%= pm[sign]%> :&& EUR \\
-  <% labels.group_by(&:category).each do |cat, labels_cat| %>
+  <% labels.group_by(&:category).sort_by { |k,v| k.rank }.each do |cat, labels_cat| %>
     & <%= cat %> & <%= money labels_cat.map(&:amount).sum.abs %> \\
   <% end %>
   &&\\

@@ -1,7 +1,40 @@
 \documentclass[12pt,a4paper]{amsart}
 
 \usepackage[margin=1in]{geometry}
+\usepackage{tikz}
+
 \begin{document}
+\vspace*{-1.5cm}
+
+\begin{center}
+  \begin{tikzpicture}[scale=0.5]
+    \coordinate (000) at (0,0);
+    \coordinate (100) at (4,0);
+    \coordinate (110) at (4,4);
+    \coordinate (010) at (0,4);
+
+    \coordinate (001) at (1,1);
+    \coordinate (101) at (3,1);
+    \coordinate (111) at (3,3);
+    \coordinate (011) at (1,3);
+
+  \filldraw[rounded corners=0.5pt]
+(000) -- (101) -- (001) -- (100) -- cycle;
+  \filldraw[rounded corners=0.5pt]
+(010) -- (111) -- (011) -- (110) -- cycle;
+  \filldraw[rounded corners=0.5pt]
+(100) -- (111) -- (101) -- (110) -- cycle;
+  \filldraw[rounded corners=0.5pt]
+(000) -- (011) -- (001) -- (010) -- cycle;
+  \end{tikzpicture}
+\end{center}
+\bigskip
+\begin{center}
+  \textbf{IRISH MATHEMATICAL SOCIETY}\\[1.5ex]
+CUMANN MATAMAITICE NA h\'EIREANN\\[1.5ex]
+\hrule
+\end{center}
+\bigskip
 
 <%= yield %>
 
