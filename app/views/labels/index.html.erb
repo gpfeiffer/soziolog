@@ -34,7 +34,7 @@
   <% "+-".chars.each do |sign| %>
     <% labels = labels_by_sign[sign] || [] %>
     <th colspan="2"><%= sign %></th>
-    <% labels.group_by(&:category).each do |cat, labels_cat| %>
+    <% labels.group_by(&:category).sort.each do |cat, labels_cat| %>
       <tr>
         <th align="left"><%= link_to cat, category_path(cat, :year => @year) %>:</th>
         <td align="right"><%= money labels_cat.map(&:amount).sum %></td>
