@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140821132800) do
+ActiveRecord::Schema.define(:version => 20140901160539) do
 
   create_table "balances", :force => true do |t|
     t.integer  "balance"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20140821132800) do
     t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.decimal  "rank"
   end
 
   create_table "conferences", :force => true do |t|

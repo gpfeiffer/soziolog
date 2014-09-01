@@ -12,6 +12,10 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :rank %><br />
+    <%= f.number_field :rank, :step => 'any' %>
+  </div>
+  <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
