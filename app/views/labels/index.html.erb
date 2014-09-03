@@ -1,4 +1,9 @@
 <% content_for :side do %>
+<h4><%= link_to 'Transactions', transactions_path(:year => @year) %></h4>
+<h4><%= link_to 'Balances', balances_path(:year => @year) %></h4>
+<h4><%= link_to 'Subscriptions', subscriptions_path(:year => @year) %></h4>
+<h4><%= link_to 'Conferences', conferences_path(:year => @year) %></h4>
+
 <h3>Reports</h3>
 <ul>
 <% @transactions_by_year.keys.sort.reverse.each do |key| %>

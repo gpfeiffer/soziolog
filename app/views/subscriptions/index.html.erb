@@ -13,7 +13,8 @@
 
 <b>Total:</b> EUR <%= money @subscriptions.map(&:payment).sum %>
 <% if @year.to_i.to_s == @year %>
-<b>Arrears:</b> EUR <%= money Member.where(:status => %w{C R O S I}).map { |x| x.arrears(@year.to_i) }.sum %>
+<b><%= link_to 'Arrears:', :anchor => 'arrears', :year => @year %></b> 
+EUR <%= money Member.where(:status => %w{C R O S I}).map { |x| x.arrears(@year.to_i) }.sum %>
 <% end %>
 
 <table>
@@ -39,7 +40,7 @@
 </table>
 
 <% if @year.to_i.to_s == @year %>
-<h2>Arrears <%= @year %></h2>
+<h2><%= content_tag(:a, 'Arrears', :name => 'arrears') %> <%= @year %></h2>
 <table>
 <tr>
   <th></th>
@@ -54,7 +55,7 @@
 <tr>
   <td align="right"><%= pos %>.</td>
   <td><%= link_to member.number, member %></td>
-  <td><%= money(arrears) %></td>
+  <td align="right"><%= money(arrears) %></td>
 </tr>
 <% end %>
 <% end %>
