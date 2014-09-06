@@ -1,5 +1,9 @@
 <h1>Members</h1>
 
+<% @members_by_status.each do |status, members| %>
+ <%= members.count %> <%= Member::STATUSES[status] %>;
+<% end %>
+
 <% members_by_first = @active.group_by { |m| I18n.transliterate(m.surname[0]) } %>
 
 <p>|
