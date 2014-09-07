@@ -4,6 +4,9 @@ class Transaction < ActiveRecord::Base
   belongs_to :balance
   has_many :subscriptions, :dependent => :destroy
 
+  has_many :fundings, :dependent => :destroy
+  has_many :conferences, :through => :fundings
+
   has_many :labels, :dependent => :destroy
   has_many :categories, :through => :labels
 

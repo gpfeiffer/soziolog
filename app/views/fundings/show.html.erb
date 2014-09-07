@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Conference:</b>
+  <%= @funding.conference_id %>
+</p>
+
+<p>
+  <b>Transaction:</b>
+  <%= @funding.transaction_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_funding_path(@funding) %> |
+<%= link_to 'Back', fundings_path %>

@@ -2,6 +2,13 @@
 class Conference < ActiveRecord::Base
   attr_accessible :applicant, :call, :conference_url, :date, :description, :document_url, :email, :funding, :host, :length, :name, :received_on
 
+  has_many :fundings, :dependent => :destroy
+  has_many :transactions, :through => :fundings
+
+  def to_s
+    name
+  end
+
   def first_day 
     date
   end

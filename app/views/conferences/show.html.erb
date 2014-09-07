@@ -47,6 +47,9 @@
 <p>
   <b>Funding:</b>
   <%= @conference.funding %>.- Euro
+<% @conference.transactions.each do |transaction| %>
+  <%= link_to transaction.date, transaction %>
+<% end %>
 </p>
 
 <% if can? :edit, @conference %>

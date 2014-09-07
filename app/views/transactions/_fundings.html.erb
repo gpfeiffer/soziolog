@@ -1,0 +1,18 @@
+  <b>Fundings: <%= link_to '[+]', new_funding_path(:transaction_id => transaction) %></b>
+<% if transaction.fundings.any? %>
+      <table>
+	<tr>
+	  <th>Conference</th>
+	  <th>Amount</th>
+	</tr>
+      <% transaction.fundings.each do |funding| %>
+<tr>
+  <td><%= link_to funding.conference, funding.conference %></td>
+  <td align="right"><%= money funding.amount %></td>
+</tr>
+      <% end %>
+      <tr><th>Sum:</th>
+	<td align="right"><%= money transaction.fundings.map(&:amount).sum %></td>
+</tr>
+</table>
+<% end %>

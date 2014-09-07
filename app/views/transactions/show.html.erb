@@ -22,6 +22,11 @@
 </p>
 
 <p>
+  <%= render :partial => 'fundings', 
+             :locals => { :transaction => @transaction } %>
+</p>
+
+<p>
   <%= render :partial => 'labels', 
              :locals => { :transaction => @transaction } %>
 </p>

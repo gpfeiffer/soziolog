@@ -1,0 +1,29 @@
+<%= form_for(@funding) do |f| %>
+  <% if @funding.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@funding.errors.count, "error") %> prohibited this funding from being saved:</h2>
+
+      <ul>
+      <% @funding.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :transaction_id %>
+
+  <div class="field">
+    <%= f.label :conference_id %><br />
+    <%= f.select :conference_id, Conference.all.map { |x| [x.to_s, x.id] }, :include_blank => true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :amount %><br />
+    <%= f.number_field :amount %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
