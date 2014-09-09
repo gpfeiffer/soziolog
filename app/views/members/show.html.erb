@@ -39,6 +39,9 @@ Student Nominees:
 <% if can? :edit, @member %>
 <%= link_to 'Edit', edit_member_path(@member) %> |
 <% end %>
+<% if can? :edit, @member %>
+<%= link_to 'Invoice', subscriptions_path(:format => 'tex', :member_id => @member, :year => Date.today.year) %> |
+<% end %>
 <% if can? :destroy, @member %>
 <%= link_to 'Destroy', @member, method: :delete, data: { confirm: 'Are you sure?' } %> |
 <% end %>

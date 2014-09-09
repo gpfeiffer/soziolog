@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class Member < ActiveRecord::Base
   attr_accessible :address, :bulletin, :comment, :email, :forename, :number, :status, :reciprocal, :surname, :title
 
@@ -71,6 +72,15 @@ class Member < ActiveRecord::Base
     (number[0, 2].to_i - 1970) % 100 + 1970
   end
 
+  def fees_decimal
+    cents = FEES[status]
+    return nil if cents.blank?
+    return "-#{fees_decimal(-cents)}" if cents < 0
+    e, c = cents.divmod 100
+    c = "%02d" % c
+    "#{e}.#{c}"
+  end
+
   def arrears(year)
     year = year
     return 0 if year < first_year
@@ -84,6 +94,10 @@ class Member < ActiveRecord::Base
 
   def institutional_name
     address.split("\n")[0,2].join(", ") if status == "I"
+  end
+
+  def acronym
+    surname[/\(.+\)/].delete("()") if status == "I"
   end
 
   def nominees
@@ -124,5 +138,38 @@ class Member < ActiveRecord::Base
     sio = StringIO.new
     book.write(sio)
     return sio.string
+  end
+
+  # FIXME: these letters should really be erb templates ...
+  def invoice_subscription(year = Date.today.year)
+    <<LETTER
+Dear #{fullname},
+
+I am writing in connection with the renewal of #{acronym}'s institutional
+membership of the Irish Mathematical Society. The membership fee for
+#{year} is €#{FEES['I']/100} - I have attached an invoice to that effect.
+
+If you would like to pay by electronic transfer, our bank account
+details are as follows:-
+
+Name:      Irish Mathematical Society
+Branch:    Bank of Ireland, Maynooth
+Sort Code: 901503
+A/C No.:   57781485
+BIC:       BOFIIE2D
+IBAN:      IE47 BOFI 9015 0357 7814 85
+
+As an institutional member, #{acronym} is entitled to nominate up to 10
+student members. The current student nominees we have on file are
+
+#{nominees.map(&:name).join("\n")}
+
+Please let me know who you would like to nominate for the coming year
+and don't hesitate to contact me with any queries.
+
+With best wishes,
+Goetz Pfeiffer
+(Treasurer, IMS)
+LETTER
   end
 end

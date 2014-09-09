@@ -1,6 +1,7 @@
 \documentclass[12pt,a4paper]{amsart}
 
 \usepackage[margin=1in]{geometry}
+\usepackage{parskip}
 \usepackage{tikz}
 
 \begin{document}
@@ -31,11 +32,20 @@
 \bigskip
 \begin{center}
   \textbf{IRISH MATHEMATICAL SOCIETY}\\[1.5ex]
-CUMANN MATAMAITICE NA h\'EIREANN\\[1.5ex]
+CUMANN MATAMAITICE NA h\'EIREANN\\[3ex]
 \hrule
 \end{center}
 \bigskip
 
 <%= yield %>
+
+\vfill
+\hrule
+\footnotesize
+\begin{center}
+Irish Mathematical Society\\
+School of Mathematics, Statistics and Applied Mathematics\\
+NUI Galway, University Road, Galway, Ireland
+\end{center}
 
 \end{document}

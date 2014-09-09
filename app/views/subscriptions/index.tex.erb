@@ -1,0 +1,40 @@
+\thispagestyle{empty}
+\bigskip
+<%= @member.fullname %> \\
+<%= @member.address.lines.to_a.join("\\\\") %>
+
+{\raggedleft
+\today
+\par}
+
+\bigskip
+\bigskip
+\begin{center}
+  \textbf{INVOICE}
+\end{center}
+
+\bigskip
+\begin{tabular}{lr}
+  Institutional Membership of the Irish Mathematical Society <%= @year %>: & 
+  EUR <%= @member.fees_decimal %> \\[2ex]
+  Total due: & EUR <%= @member.fees_decimal %> 
+\end{tabular}
+
+\bigskip 
+Payments can be made by cheque 
+or by direct bank transfer to the account of the 
+Irish Mathematical Society (IBAN: IE47 BOFI 9015 0357 7814 85) at 
+Bank of Ireland, Maynooth (BIC: BOFIIE2D).  
+
+Cheques should be made payable to the 'Irish Mathematical Society'.
+
+\bigskip
+\bigskip
+Thanking you in advance,
+
+\includegraphics{gp_signature}
+
+Dr G\"otz Pfeiffer \\
+(Treasurer, IMS) \\
+\texttt{goetz.pfeiffer@nuigalway.ie}
+
