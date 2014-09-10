@@ -41,6 +41,7 @@ Student Nominees:
 <% end %>
 <% if can? :edit, @member %>
 <%= link_to 'Invoice', subscriptions_path(:format => 'tex', :member_id => @member, :year => Date.today.year) %> |
+<%= mail_to @member.email, 'Send', :subject => 'Renewal of institutional IMS membership', :cc => 'subscriptions.ims@gmail.com', :body => @member.invoice_subscription %> |
 <% end %>
 <% if can? :destroy, @member %>
 <%= link_to 'Destroy', @member, method: :delete, data: { confirm: 'Are you sure?' } %> |

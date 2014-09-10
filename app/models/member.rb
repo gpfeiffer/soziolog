@@ -142,7 +142,8 @@ class Member < ActiveRecord::Base
 
   # FIXME: these letters should really be erb templates ...
   def invoice_subscription(year = Date.today.year)
-    <<LETTER
+    if status == 'I'
+      <<LETTER
 Dear #{fullname},
 
 I am writing in connection with the renewal of #{acronym}'s institutional
@@ -171,5 +172,6 @@ With best wishes,
 Goetz Pfeiffer
 (Treasurer, IMS)
 LETTER
+    end
   end
 end
