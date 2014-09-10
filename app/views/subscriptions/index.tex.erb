@@ -1,7 +1,7 @@
 \thispagestyle{empty}
 \bigskip
-<%= @member.fullname %> \\
-<%= @member.address.lines.to_a.join("\\\\") %>
+<%= raw @member.fullname %> \\
+<%= raw @member.address.lines.to_a.join("\\\\") %>
 
 {\raggedleft
 \today
