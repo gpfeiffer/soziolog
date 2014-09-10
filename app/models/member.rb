@@ -96,6 +96,13 @@ class Member < ActiveRecord::Base
     address.split("\n")[0,2].join(", ") if status == "I"
   end
 
+  # which student nominations are currently vacant
+  def vacant_nominations
+    if status == 'I'
+      10.times.map { |i| "#{number}#{i}" } - nominees.map(&:number)
+    end
+  end
+
   def acronym
     surname[/\(.+\)/].delete("()") if status == "I"
   end
