@@ -29,6 +29,13 @@ class MembersController < ApplicationController
   # GET /members/new
   # GET /members/new.json
   def new
+    @institute = Member.find(params[:institute_id])
+    if @institute
+      @member.address = @institute.address
+      @member.status = 'N'
+      @member.bulletin = 'yes'
+      @member.comment = "added #{Date.today}."
+    end
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @member }

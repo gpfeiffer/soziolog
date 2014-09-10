@@ -20,9 +20,9 @@
 Nominated by <%= link_to institute.institutional_name, institute %>.
 <% end %>
 
+<% if @member.status == 'I' %>
 <% nominees = @member.nominees %>
-<% if nominees %>
-Student Nominees:
+Student Nominees: [<%= link_to '+', new_member_path(:institute_id => @member) %>]
 <ul>
 <% nominees.each do |nominee| %>
 <li><%= link_to nominee.name, nominee %></li>

@@ -1,0 +1,61 @@
+<h1><%= @institute.institutional_name %></h1>
+<%= form_for(@member) do |f| %>
+  <% if @member.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@member.errors.count, "error") %> prohibited this member from being saved:</h2>
+
+      <ul>
+      <% @member.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<table>
+  <tr>
+    <td align="right"><%= f.label :number %></td>
+    <td><%= f.select :number, @institute.vacant_nominations %></td>
+  </tr>
+  <tr>
+    <td align="right"><%= f.label :title %></td>
+    <td><%= f.text_field :title, :size => 20 %></td>
+  </tr>
+  <tr>
+    <td align="right"><%= f.label :forename %></td>
+    <td><%= f.text_field :forename, :size => 40 %></td>
+  </tr>
+  <tr>
+    <td align="right"><%= f.label :surname %></td>
+    <td><%= f.text_field :surname, :size => 40 %></td>
+  </tr>
+  <tr>
+    <td align="right"><%= f.label :address %></td>
+    <td><%= f.text_area :address, :rows => 7, :cols => 40 %></td>
+  </tr>
+  <tr>
+    <td align="right"><%= f.label :email %></td>
+    <td><%= f.text_field :email, :size => 40 %></td>
+  </tr>
+  <tr>
+    <td align="right"><%= f.label :status %></td>
+    <td><%= f.select :status, Member::STATUSES.map { |k, v| [v, k] } %></td>
+  </tr>
+  <tr>
+    <td align="right"><%= f.label :reciprocal %></td>
+    <td><%= f.text_field :reciprocal, :size => 40 %></td>
+  </tr>
+  <tr>
+    <td align="right"><%= f.label :bulletin %></td>
+    <td><%= f.select :bulletin, Member::BULLETIN, :include_blank => true %></td>
+  </tr>
+  <tr>
+    <td align="right"><%= f.label :comment %></td>
+    <td><%= f.text_area :comment, :rows => 7, :cols => 40 %></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><%= f.submit %></td>
+  </tr>
+</table>
+<% end %>
