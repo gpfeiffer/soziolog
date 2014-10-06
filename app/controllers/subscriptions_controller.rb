@@ -6,7 +6,7 @@ class SubscriptionsController < ApplicationController
   def index
     @subscriptions_by_year = @subscriptions.group_by(&:year)
     @year = params[:year] || @subscriptions_by_year.keys.sort.last
-    @member = Member.find(params[:member_id])
+    @member = Member.find(params[:member_id]) if params[:member_id]
     @subscriptions = @subscriptions_by_year[@year]
 
     respond_to do |format|
