@@ -3,6 +3,8 @@ require 'test_helper'
 class FundingsControllerTest < ActionController::TestCase
   setup do
     @funding = fundings(:one)
+    @user = users(:me)
+    sign_in @user
   end
 
   test "should get index" do
@@ -12,7 +14,7 @@ class FundingsControllerTest < ActionController::TestCase
   end
 
   test "should get new" do
-    get :new
+    get :new, transaction_id: @funding.transaction
     assert_response :success
   end
 
@@ -21,7 +23,7 @@ class FundingsControllerTest < ActionController::TestCase
       post :create, funding: { conference_id: @funding.conference_id, transaction_id: @funding.transaction_id }
     end
 
-    assert_redirected_to funding_path(assigns(:funding))
+    assert_redirected_to transaction_path(assigns(:funding).transaction)
   end
 
   test "should show funding" do
@@ -36,7 +38,7 @@ class FundingsControllerTest < ActionController::TestCase
 
   test "should update funding" do
     put :update, id: @funding, funding: { conference_id: @funding.conference_id, transaction_id: @funding.transaction_id }
-    assert_redirected_to funding_path(assigns(:funding))
+    assert_redirected_to transaction_path(assigns(:funding).transaction)
   end
 
   test "should destroy funding" do
@@ -44,6 +46,6 @@ class FundingsControllerTest < ActionController::TestCase
       delete :destroy, id: @funding
     end
 
-    assert_redirected_to fundings_path
+    assert_redirected_to transaction_path(assigns(:funding).transaction)
   end
 end

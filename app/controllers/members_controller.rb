@@ -29,8 +29,8 @@ class MembersController < ApplicationController
   # GET /members/new
   # GET /members/new.json
   def new
-    @institute = Member.find(params[:institute_id])
-    if @institute
+    if params[:institute_id]
+      @institute = Member.find(params[:institute_id])
       @member.address = @institute.address
       @member.status = 'N'
       @member.bulletin = 'yes'

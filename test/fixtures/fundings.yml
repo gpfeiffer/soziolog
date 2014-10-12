@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  conference_id: 1
-  transaction_id: 1
+  amount: 200
+  conference: one
+  transaction: one
 
 two:
-  conference_id: 1
-  transaction_id: 1
+  amount: 300
+  conference: two
+  transaction: two
