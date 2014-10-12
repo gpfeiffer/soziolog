@@ -125,14 +125,14 @@ PLATFORMS
 
 DEPENDENCIES
   cancan
-  coffee-rails (~> 3.2.1)
+  coffee-rails (~> 3.2.2)
   devise
   i18n
   jquery-rails
   kramdown
   nokogiri
   rails (= 3.2.19)
-  sass-rails (~> 3.2.3)
+  sass-rails (~> 3.2.6)
   spreadsheet
   sqlite3
   uglifier (>= 1.0.3)
