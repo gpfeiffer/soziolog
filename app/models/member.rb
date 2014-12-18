@@ -68,6 +68,10 @@ class Member < ActiveRecord::Base
     "RISCO".include? status and not subscriptions.map(&:year).include? '2014' and comment != "ITT paying"
   end
 
+  def outstanding(year = Date.today.year)
+    ([1,0].map { |x| (year - x).to_s } - subscriptions.map(&:year)).to_sentence
+  end
+
   def first_year
     (number[0, 2].to_i - 1970) % 100 + 1970
   end
@@ -180,5 +184,50 @@ Goetz Pfeiffer
 (Treasurer, IMS)
 LETTER
     end
+  end
+
+  def reminder_subscription(year = Date.today.year)
+    <<REMINDER
+Dear #{fullname},
+
+I am writing in relation to your membership of the 
+Irish Mathematical Society.  Subscriptions for #{year} 
+were due on February 1, and according to our records
+your payment for #{outstanding} 
+has not arrived yet.
+
+The current membership rates are:
+
+   EUR 25.00  for ordinary members,
+   GBP 20.00  Sterling rate,
+   USD 30.00  International rate,
+
+   EUR 12.50  for members at reduced rate (student, retired, or
+              reciprocal membership with DMV, I.M.T.A., NZMS or RSME),
+   USD 15.00  for reciprocal membership with the AMS.
+
+Your membership is at the '#{STATUSES[status]}' rate.
+
+Payments can be made by cheque (payable to 
+'Irish Mathematical Society'), or by 
+Electronic Bank Transfer, the IMS bank account
+details are as follows:-
+
+Name:      Irish Mathematical Society
+Branch:    Bank of Ireland, Maynooth
+Sort Code: 901503
+A/C No.:   57781485
+BIC:       BOFIIE2D
+IBAN:      IE47 BOFI 9015 0357 7814 85
+
+The Society depends on its members' dues.  Please pay your
+outstanding subscription at your earliest convenience.
+Alternatively, drop me a note if you wish to terminate
+your membership.
+
+With best wishes,
+Goetz Pfeiffer
+(Treasurer, IMS)
+REMINDER
   end
 end
