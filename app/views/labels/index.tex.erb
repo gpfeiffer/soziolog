@@ -44,16 +44,21 @@
 \bigskip
 <% opening = @transactions.first.balance.previous.balance %>
 <% closing = @transactions.last.balance.balance %>
-<% savings = 349961 %>
-\begin{tabular}{lr}
-Current account: & Euro \\
-Opening Balance & <%= money opening %>  \\
-<%= op %> <%= verdict %> & <%= money total %> \\
-Closing Balance & <%= money closing %> \\
+<% saving0 = 349961 %>
+<% savings = 384957 %>
+\begin{tabular}{lrllr}
+Current account: & Euro & \phantom{Euro} & 
+Savings Certificates: & Euro \\
+Opening Balance & <%= money opening %> && 
+Opening Balance & <%= money savings0 %>  \\
+<%= op %> <%= verdict %> & <%= money total %> &&
+Interest & <%= money (savings - saving0) %> \\
+Closing Balance & <%= money closing %> &&
+Closing Balance & <%= money savings %> \\
 \medskip \\
-Savings Certificates & <%= money savings %> \\
-Current Account & <%= money closing %> \\
-Closing Balance & <%= money (savings + closing) %>
+&&&Savings Certificates & <%= money savings %> \\
+&&&Current Account & <%= money closing %> \\
+&&&Closing Balance & <%= money (savings + closing) %>
 \end{tabular}
 \end{center}
 
