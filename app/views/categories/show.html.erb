@@ -7,20 +7,18 @@
   <%= @category.description %> 
 </p>
 
-<table>
-<% @labels.each do |label| %>
-<tr>
-  <td><%= label.transaction.date %></td>
-  <td><%= link_to label.transaction.text, label.transaction %></td>
-  <td align="right"><%= money label.amount %></td>
-</tr>
+<% if @year %>
+  <%= render partial: 'labels', object: @labels %>
+<% else %>
+  <% @labels_by_year.each do |year, labels| %>
+  <h3><%= year %></h3>
+    <%= render partial: 'labels', object: labels %>
+  <% end %>
+  <p>
+    <b>Sum:</b>
+    <%= money @category.amount %> 
+  </p>
 <% end %>
-<tr>
-  <td></td>
-  <th>Sum</th>
-  <td align="right"><%= money @labels.map(&:amount).sum %></td>
-</tr>
-</table>
 
 <%= link_to 'Edit', edit_category_path(@category) %> |
 <%= link_to 'Destroy', @category, method: :delete, data: { confirm: 'Are you sure?' } %> |

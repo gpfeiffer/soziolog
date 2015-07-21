@@ -4,6 +4,8 @@ class Label < ActiveRecord::Base
   belongs_to :category
   belongs_to :transaction
 
+  delegate :year, to: :transaction
+
   def sign
     "++-"[amount <=> 0]
   end
