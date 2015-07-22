@@ -1,14 +1,14 @@
 class Balance < ActiveRecord::Base
   attr_accessible :balance, :date, :previous_id
 
-  belongs_to :previous, :class_name => 'Balance'
-  has_one :next, :class_name => 'Balance', :foreign_key => :previous_id
+  default_scope order: :date
 
-  has_many :transactions, :dependent => :destroy
+  belongs_to :previous, class_name: 'Balance'
+  has_one :next, class_name: 'Balance', foreign_key: :previous_id
 
-  default_scope :order => :date
+  has_many :transactions, dependent: :destroy
 
-  validate :date, :presence => true, :uniqueness => true
+  validate :date, presence: true, uniqueness: true
 
   def year
     date.year
