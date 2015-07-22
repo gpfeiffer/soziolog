@@ -1,3 +1,119 @@
+<style>
+  .axis, .label {
+    font-family: arial;
+    font-size: 0.8em;
+  }
+
+  path {
+    fill: none;
+    stroke: black;
+    stroke-width: 2px;
+  }
+
+  .tick {
+    fill: none;
+    stroke: black;
+  }
+
+  .line {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 1px;
+  }
+
+  circle {
+    opacity: 0.6;
+    stroke: none;
+    fill: blue;
+  }
+</style>
+
+<script type="text/javascript">
+function draw(data) {
+  "use strict";
+  var xMargin = 40, yMargin = 20,
+    width = 1000,
+    height = 300;
+
+    var svg = d3.select("div#chart")
+      .append("svg")
+        .attr("width", width)
+        .attr("height", height)
+      .append("g")
+        .attr("class", "chart");
+
+  function getId(d) { return d.id; }
+
+  // x axis represents time
+  function getDate(d) { return new Date(d.date); }
+
+  var minDate = d3.min(data, getDate);
+  minDate.setMonth(0, 1);
+  var maxDate = new Date(minDate);
+  maxDate.setMonth(12);
+  console.log(minDate);
+  console.log(maxDate);
+
+  var x = d3.time.scale()
+    .range([xMargin, width-xMargin])
+    .domain([minDate, maxDate])
+    .nice();
+  var xAxis = d3.svg.axis()
+    .scale(x);
+  svg.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + (height-yMargin) + ")")
+    .call(xAxis);
+
+
+  // y axis represents money
+  function getBal(d) { return d.balance/100.0; }
+
+  var y = d3.scale.linear()
+    .range([height-yMargin, yMargin])
+    .domain([d3.min(data, getBal)-200, d3.max(data, getBal)])
+    .nice();
+  var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .ticks(4);
+  svg.append("g")
+    .attr("class", "y axis")
+    .attr("transform", "translate(" + xMargin + ",0)")
+    .call(yAxis);
+
+
+  var line = d3.svg.line()
+    .x(function(d) { return x(getDate(d)); })
+    .y(height-yMargin)
+    .interpolate("monotone");
+
+  var path = svg.append("path")
+    .datum(data)
+    .attr("class", "line")
+    .attr("d", line);
+
+  svg.selectAll("circle")
+    .data(data, getId)
+    .enter()
+    .append("circle")
+    .attr("cx", function(d) { return x(getDate(d)); })
+    .attr("cy", height-yMargin)
+    .attr("r", 3)
+    .append("title")
+    .text(function(d) { return getDate(d).toDateString() + ": " + getBal(d); });
+
+  line.y(function(d) { return y(getBal(d)); });
+  path.transition().duration(1500).ease("bounce")
+    .attr("d", line);
+
+  svg.selectAll("circle")
+    .transition().duration(1500).ease("bounce")
+    .attr("cy", function(d) { return y(getBal(d)); })
+    .style("fill", 'red')
+}
+</script>
+
 <% content_for :side do %>
 <h3>Balances</h3>
 <ul>
@@ -8,6 +124,11 @@
 <% end %>
 </ul>
 <% end %>
+
+<div id="chart"></div>
+<script type="text/javascript">
+  d3.json("<%= balances_path(:json, year: @year) %>", draw);
+</script>
 
 <h1>Balances <%= @year %></h1>
 
@@ -20,7 +141,7 @@
     <th>Error</th>
   </tr>
 
-<% @balances.each do |balance| %>
+<% @balances_year.each do |balance| %>
   <tr>
     <td><%= link_to balance.date, balance %></td>
     <td align="right"><%= money(balance.balance) %></td>

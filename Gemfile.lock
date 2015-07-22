@@ -39,6 +39,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
+    d3_rails (3.5.6)
+      railties (>= 3.1.0)
     devise (3.4.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -126,6 +128,7 @@ PLATFORMS
 DEPENDENCIES
   cancan
   coffee-rails (~> 3.2.2)
+  d3_rails
   devise
   i18n
   jquery-rails

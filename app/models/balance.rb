@@ -25,4 +25,8 @@ class Balance < ActiveRecord::Base
   def error
     amount - categorized
   end
+
+  def as_json(options = {})
+    super(root: false, only: [:id, :date, :balance]) 
+  end
 end
