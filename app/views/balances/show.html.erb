@@ -39,6 +39,7 @@
     <th>Date</th>
     <th>Text</th>
     <th>Amount</th>
+    <th>Error</th>
     <th></th>
   </tr>
 
@@ -47,6 +48,11 @@
     <td><%= link_to transaction.date, transaction %></td>
     <td><%= link_to transaction.text, transaction %></td>
     <td align="right"><%= number_to_currency transaction.amount/100.0, :format => "%n %u", :unit => "EUR" %></td>
+    <td style="color: red;">
+      <% if transaction.error != 0 %>
+        <%= money(transaction.error) %>
+      <% end %>
+    </td>
     <td>
       <% transaction.subscriptions.first(5).each do |subscription| %>
         <%= link_to subscription.member.number, subscription.member %>

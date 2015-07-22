@@ -13,6 +13,17 @@
 
   <%= f.hidden_field :transaction_id %>
 
+<p>
+  <b>Text:</b>
+  <%= @subscription.transaction.text %>
+</p>
+
+<p>
+  <b>Amount:</b>
+  <%= money @subscription.transaction.amount %>
+</p>
+
+
   <div class="field">
     <%= f.label :year %><br />
     <%= f.text_field :year %>

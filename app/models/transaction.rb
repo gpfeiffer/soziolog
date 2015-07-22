@@ -23,4 +23,17 @@ class Transaction < ActiveRecord::Base
   def categorized
     labels.map(&:amount).sum
   end
+
+  def error
+    amount - categorized
+  end
+
+  def number
+    m = /\d{5}|MM\d{3}/.match(text)
+    return m[0] if m
+  end
+
+  def member
+    Member.where(number: number).first
+  end
 end
