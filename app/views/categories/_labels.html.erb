@@ -1,0 +1,14 @@
+<table>
+  <% labels.each do |label| %>
+    <tr>
+      <td><%= label.transaction.date %></td>
+      <td><%= link_to label.transaction.text, label.transaction %></td>
+      <td align="right"><%= money label.amount %></td>
+    </tr>
+  <% end %>
+  <tr>
+    <td></td>
+    <th>Sum</th>
+    <td align="right"><%= money labels.map(&:amount).sum %></td>
+  </tr>
+</table>

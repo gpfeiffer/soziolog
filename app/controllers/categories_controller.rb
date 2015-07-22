@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource :except => [:show]
 
   # GET /categories
   # GET /categories.json
@@ -13,8 +13,11 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
-    @year = params[:year].to_i
-    @labels = Label.where(:category_id => @category.id).select { |x| x.transaction.year == @year }
+    @category = Category.includes(labels: :transaction).find(params[:id])
+    authorize! :show, @category
+    @labels_by_year = @category.labels.group_by(&:year)
+    @year = params[:year]
+    @labels = @labels_by_year[@year.to_i] || []
 
     respond_to do |format|
       format.html # show.html.erb
