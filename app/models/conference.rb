@@ -36,8 +36,9 @@ asking for support of your conference
 The Committee has now carefully evaluated your application, 
 and I am pleased to be able to inform you that 
 the IMS will support your event with €#{funding}.  
-Please let me have your bank/contact details as soon as possible 
-so that the funds can be transferred without delay.
+Please let me have your university bank/contact details 
+as soon as possible so that the funds can be transferred 
+without delay.
 
 Please note that the IMS in return expects 
 a report on the academic activities during your meeting 
