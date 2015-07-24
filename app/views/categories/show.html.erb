@@ -10,7 +10,7 @@
 <% if @year %>
   <%= render partial: 'labels', object: @labels %>
 <% else %>
-  <% @labels_by_year.each do |year, labels| %>
+  <% @labels_by_year.sort.each do |year, labels| %>
   <h3><%= year %></h3>
     <%= render partial: 'labels', object: labels %>
   <% end %>
