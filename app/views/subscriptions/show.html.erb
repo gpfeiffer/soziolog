@@ -22,6 +22,10 @@ paid on
 <%= link_to @subscription.paid_on, @subscription.transaction %>.
 </p>
 
-<%= link_to 'Edit', edit_subscription_path(@subscription) %> |
-<%= link_to 'Destroy', @subscription, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<% if can? :update, @subscription %>
+  <%= link_to 'Edit', edit_subscription_path(@subscription) %> |
+<% end %>
+<% if can? :destroy, @subscription %>
+  <%= link_to 'Destroy', @subscription, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<% end %>
 <%= link_to 'Back', subscriptions_path %>

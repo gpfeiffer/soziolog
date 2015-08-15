@@ -12,4 +12,8 @@ class User < ActiveRecord::Base
   def admin?
     id == 1
   end
+
+  def auditor?
+    id == 20 or id == 21
+  end
 end

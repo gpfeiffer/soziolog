@@ -38,4 +38,6 @@
 
 <br />
 
-<%= link_to 'New Transaction', new_transaction_path %>
+<% if can? :create, Transaction %>
+  <%= link_to 'New Transaction', new_transaction_path %>
+<% end %>
