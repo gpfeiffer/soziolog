@@ -179,4 +179,6 @@ function draw(data) {
 
 <br />
 
-<%= link_to 'New Balance', new_balance_path %>
+<% if can? :create, Balance %>
+  <%= link_to 'New Balance', new_balance_path %>
+<% end %>

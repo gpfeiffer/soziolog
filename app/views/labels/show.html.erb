@@ -16,6 +16,10 @@
 </p>
 
 
-<%= link_to 'Edit', edit_label_path(@label) %> |
-<%= link_to 'Destroy', @label, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<% if can? :update, @label %>
+  <%= link_to 'Edit', edit_label_path(@label) %> |
+<% end %>
+<% if can? :destroy, @label %>
+  <%= link_to 'Destroy', @label, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<% end %>
 <%= link_to 'Back', @label.transaction %>

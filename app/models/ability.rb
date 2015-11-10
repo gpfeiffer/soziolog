@@ -7,6 +7,8 @@ class Ability
 
     if user.admin?
       can :manage, :all
+    elsif user.auditor?
+      can :read, :all
     else
       can :read, [Conference, Doctorate]
     end

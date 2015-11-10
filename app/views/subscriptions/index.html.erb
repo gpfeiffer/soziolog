@@ -27,7 +27,7 @@ EUR <%= money Member.where(:status => %w{C R O S I}).map { |x| x.arrears(@year.t
   </tr>
 
 <% pos = 0 %>
-<% @subscriptions.each do |subscription| %>
+<% @subscriptions.sort_by(&:paid_on).each do |subscription| %>
   <% pos +=1 %>
   <tr>
     <td align="right"><%= pos %>.</td>
@@ -46,16 +46,26 @@ EUR <%= money Member.where(:status => %w{C R O S I}).map { |x| x.arrears(@year.t
   <th></th>
   <th>Member</th>
   <th>Amount</th>
+  <td>Last</td>
+  <td>Date</td>
+  <td></td>
 </tr>
 <% pos = 0 %>
-<% Member.where(:status => %w{C R O S I}).each do |member| %>
+<% Member.where(:status => %w{C R O S I}).sort_by(&:number).each do |member| %>
 <% arrears = member.arrears(@year.to_i) %>
 <% if arrears != 0 %>
 <% pos +=1 %>
+<% subscription = member.subscriptions.sort_by(&:year).last %>
 <tr>
   <td align="right"><%= pos %>.</td>
   <td><%= link_to member.number, member %></td>
   <td align="right"><%= money(arrears) %></td>
+  <td><%= subscription.year if subscription %></td>
+  <td><%= subscription.paid_on if subscription %></td>
+  <td>
+    <%= 'no email' if member.email.blank? %>
+    <%= 'ITT' if member.comment && member.comment.match("ITT") %>
+  </td>
 </tr>
 <% end %>
 <% end %>

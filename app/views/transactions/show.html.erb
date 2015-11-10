@@ -32,7 +32,10 @@
 </p>
 
 
-
-<%= link_to 'Edit', edit_transaction_path(@transaction) %> |
-<%= link_to 'Destroy', @transaction, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<% if can? :update, @transaction %>
+  <%= link_to 'Edit', edit_transaction_path(@transaction) %> |
+<% end %>
+<% if can? :destroy, @transaction %>
+  <%= link_to 'Destroy', @transaction, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<% end %>
 <%= link_to 'Back', transactions_path %>

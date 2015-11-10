@@ -49,17 +49,15 @@ Student Nominees: [<%= link_to '+', new_member_path(:institute_id => @member) %>
 <% end %>
 <%= link_to 'Back', members_path %>
 
-<% if can? :destroy, @member %>
 <p><b>Subscriptions</b></p>
 <table>
 <% @member.subscriptions.sort_by(&:year).reverse.each do |subscription| %>
 <tr>
   <td><%= link_to subscription.year, subscription %></td>
   <td><%= subscription.currency %> <%= money subscription.value %></td>
-  <td><%= money subscription.payment %></td>
+  <td align="right"><%= money subscription.payment %></td>
   <td><%= link_to subscription.paid_on, subscription.transaction %></td>
 </tr>
 <% end %>
 </table>
-<% end %>
 
