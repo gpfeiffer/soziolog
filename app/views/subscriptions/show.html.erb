@@ -23,5 +23,6 @@ paid on
 </p>
 
 <%= link_to 'Edit', edit_subscription_path(@subscription) %> |
+<%= mail_to @subscription.member.email, 'Confirm', :subject => "Receipt: IMS subscription ##{@subscription.member.number}", :cc => 'subscriptions.ims@gmail.com', :body => @subscription.payment_confirmation %> |
 <%= link_to 'Destroy', @subscription, method: :delete, data: { confirm: 'Are you sure?' } %> |
 <%= link_to 'Back', subscriptions_path %>
