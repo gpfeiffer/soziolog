@@ -16,11 +16,6 @@
       the <%= Conference.count %> <%= link_to 'conferences', conferences_path %> applying for funding from the IMS ...
     </li>
 <% end %>
-<% if can? :read, Doctorate %>
-    <li>
-      the <%= Doctorate.count %> mathematical <%= link_to 'doctorates', doctorates_path %> obtained at Irish universities ...
-    </li>
-<% end %>
     <li>
       the <%= link_to 'website', 'http://irishmathsoc.org' %> of the IMS
      </li>

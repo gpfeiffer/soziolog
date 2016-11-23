@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140907154736) do
+ActiveRecord::Schema.define(:version => 20161123132758) do
 
   create_table "balances", :force => true do |t|
     t.integer  "balance"
@@ -44,20 +44,6 @@ ActiveRecord::Schema.define(:version => 20140907154736) do
     t.date     "received_on"
     t.string   "email"
     t.string   "conference_url"
-  end
-
-  create_table "doctorates", :force => true do |t|
-    t.string   "first"
-    t.string   "last"
-    t.string   "university"
-    t.string   "title"
-    t.integer  "year"
-    t.string   "advisor"
-    t.string   "thesis"
-    t.integer  "genealogy_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.string   "msc"
   end
 
   create_table "fundings", :force => true do |t|

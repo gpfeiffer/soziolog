@@ -17,9 +17,6 @@ Sociolog::Application.routes.draw do
   resources :transactions
 
 
-  resources :doctorates
-
-
   resources :conferences
 
 

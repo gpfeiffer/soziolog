@@ -10,7 +10,7 @@ class Ability
     elsif user.auditor?
       can :read, :all
     else
-      can :read, [Conference, Doctorate]
+      can :read, Conference
     end
   end
 end

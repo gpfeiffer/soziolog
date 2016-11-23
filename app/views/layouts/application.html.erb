@@ -11,19 +11,16 @@
 Irish Mathematical Society
 </div>
 <div id="navigation">
-<div id="home"> 
+<div id="home">
 <%= link_to 'Home', root_path %>
-<% if can? :read, Member %> 
+<% if can? :read, Member %>
 | <%= link_to 'Members', members_path %>
 <% end %>
-<% if can? :read, Conference %> 
-| <%= link_to 'Conferences', conferences_path %> 
+<% if can? :read, Conference %>
+| <%= link_to 'Conferences', conferences_path %>
 <% end %>
-<% if can? :read, Doctorate %> 
-| <%= link_to 'Doctorates', doctorates_path %> 
-<% end %>
-<% if can? :read, Label %> 
-| <%= link_to 'Reports', labels_path %> 
+<% if can? :read, Label %>
+| <%= link_to 'Reports', labels_path %>
 <% end %>
 </div>
 <div id="login">
