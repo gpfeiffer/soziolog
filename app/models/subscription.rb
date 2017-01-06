@@ -9,7 +9,7 @@ class Subscription < ActiveRecord::Base
   validates :value, :currency, :member_id, :presence => true
   validates :currency, :inclusion => CURRENCIES
 
-  def payment_confirmation(year = Date.today.year)
+  def payment_confirmation
     <<CONFIRMATION
 Dear #{member.fullname},
 
