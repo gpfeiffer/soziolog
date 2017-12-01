@@ -65,7 +65,7 @@ class Member < ActiveRecord::Base
   end
 
   def arrears?
-    "RISCO".include? status and not subscriptions.map(&:year).include? '2016' and comment != "ITT paying"
+    "RISCO".include? status and not subscriptions.map(&:year).include? '2017' and comment != "ITT paying"
   end
 
   def outstanding(year = Date.today.year)
