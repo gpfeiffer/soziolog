@@ -180,5 +180,12 @@ function draw(data) {
 <br />
 
 <% if can? :create, Balance %>
+<div>
+<h4>Import</h4>
+<%= form_tag import_balances_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import CSV" %>
+<% end %>
+</div>
   <%= link_to 'New Balance', new_balance_path %>
 <% end %>

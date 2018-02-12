@@ -8,7 +8,32 @@ class Balance < ActiveRecord::Base
 
   has_many :transactions, dependent: :destroy
 
-  validate :date, presence: true, uniqueness: true
+  validates :date, presence: true, uniqueness: true
+
+  # import transactions from csv file
+  def self.import(file)
+    puts file.path
+    transactions = File.open(file.path)
+    headers = transactions.readline
+    transactions.each do |row|
+      transaction = Transaction.from_csv(row)
+      puts transaction.inspect
+      balance = Balance.find_or_create_by_date(transaction.date)
+      if not balance.previous
+        puts "NEW!!"
+        balance.previous = Balance.where("date < ?", transaction.date).last
+        balance.balance = balance.previous.balance
+        balance.save
+      end
+      puts balance.inspect
+      balance.add_transaction(transaction)
+    end
+  end
+
+  def add_transaction(transaction)
+    transactions << transaction
+    update_attribute(:balance, balance + transaction.amount)
+  end
 
   def year
     date.year

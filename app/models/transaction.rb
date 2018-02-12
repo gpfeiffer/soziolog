@@ -1,6 +1,6 @@
 class Transaction < ActiveRecord::Base
   attr_accessible :amount, :balance_id, :comment, :date, :text
-  
+
   belongs_to :balance
   has_many :subscriptions, :dependent => :destroy
 
@@ -35,5 +35,17 @@ class Transaction < ActiveRecord::Base
 
   def member
     Member.where(number: number).first
+  end
+
+  TAB1, TAB2 = 10, 32
+  def self.from_csv(row)
+    debit, credit, balance = row[TAB2+1..-1].split(',')
+    h = {
+      date: Date.parse(row[0..TAB1-1]),
+      text: row[TAB1+1..TAB2-1].strip,
+      amount: (100 * (credit.to_d - debit.to_d)).to_i
+    }
+    puts h.inspect
+    Transaction.new(h)
   end
 end

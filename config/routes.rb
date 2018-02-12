@@ -8,9 +8,11 @@ Sociolog::Application.routes.draw do
   resources :categories
 
 
-  resources :balances
+  resources :balances do
+    collection { post :import }
+  end
 
-
+ 
   resources :subscriptions
 
 

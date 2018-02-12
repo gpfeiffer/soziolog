@@ -1,6 +1,11 @@
 class BalancesController < ApplicationController
   load_and_authorize_resource
 
+  def import
+    Balance.import(params[:file])
+    redirect_to root_url, notice: "CSV data imported."
+  end
+
   # GET /balances
   # GET /balances.json
   def index
