@@ -141,7 +141,7 @@ class Member < ActiveRecord::Base
     sheet.row(0).default_format = format
     
     members = Member.where(:bulletin => "yes").group_by(&:status)
-    members = "HLOCRSN".split("").map { |c| members[c] }.sum
+    members = "HLOPCRSN".split("").map { |c| members[c] }.sum
     members.each_with_index do |member, i|
       sheet.row(i+1).concat member.to_a
     end
