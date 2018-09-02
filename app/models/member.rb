@@ -44,7 +44,7 @@ class Member < ActiveRecord::Base
     "%s %s %s" % [title, forename, surname]
   end
 
-  def name 
+  def name
     "#{surname}, #{forename}"
   end
 
@@ -57,15 +57,15 @@ class Member < ActiveRecord::Base
   end
 
   def active?
-    "SCHNORL".include? status    
+    "SCHNORL".include? status
   end
 
   def paying?
-    "SCOR".include? status    
+    "SCOR".include? status
   end
 
   def arrears?
-    "RISCO".include? status and not subscriptions.map(&:year).include? '2017' and comment != "ITT paying"
+    "RISCO".include? status and not subscriptions.map(&:year).include? '2018' and comment != "ITT paying"
   end
 
   def outstanding(year = Date.today.year)
@@ -134,18 +134,18 @@ class Member < ActiveRecord::Base
   def self.to_xls
     book = Spreadsheet::Workbook.new
     sheet = book.create_worksheet :name => 'bulletin'
-    
+
     sheet.row(0).concat COLUMNS
-    
+
     format = Spreadsheet::Format.new :color => :blue, :weight => :bold
     sheet.row(0).default_format = format
-    
+
     members = Member.where(:bulletin => "yes").group_by(&:status)
     members = "HLOPCRSN".split("").map { |c| members[c] }.sum
     members.each_with_index do |member, i|
       sheet.row(i+1).concat member.to_a
     end
-    
+
     sio = StringIO.new
     book.write(sio)
     return sio.string
@@ -190,10 +190,10 @@ LETTER
     <<REMINDER
 Dear #{fullname},
 
-I am writing in relation to your membership of the 
-Irish Mathematical Society.  Subscriptions for #{year} 
+I am writing in relation to your membership of the
+Irish Mathematical Society.  Subscriptions for #{year}
 were due on February 1, and according to our records
-your payment for #{outstanding} 
+your payment for #{outstanding}
 has not arrived yet.
 
 The current membership rates are:
@@ -208,8 +208,8 @@ The current membership rates are:
 
 Your membership is at the '#{STATUSES[status]}' rate.
 
-Payments can be made by cheque (payable to 
-'Irish Mathematical Society'), or by 
+Payments can be made by cheque (payable to
+'Irish Mathematical Society'), or by
 Electronic Bank Transfer, the IMS bank account
 details are as follows:-
 
