@@ -45,10 +45,14 @@
 <% end %>
 
 <p>
-  <b>Funding:</b>
-  <%= @conference.funding %>.- Euro
+  <b>Funding requested:</b>
+    <%= @conference.request %>.- Euro.
+<% if @conference.funding %>
+  <b>Funding approved:</b>
+    <%= @conference.funding %>.- Euro.
 <% @conference.transactions.each do |transaction| %>
   <%= link_to transaction.date, transaction %>
+<% end %>
 <% end %>
 </p>
 

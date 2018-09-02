@@ -44,7 +44,8 @@
   <%= conference.description.truncate(400, :separator => ' ', :omission => ' ') %>
 <%= link_to '[more...]', conference %>
 </div>
-<b>Funding:</b>    <%= conference.funding %>
+<b>Requested:</b> EUR <%= conference.request %>.
+<%= "<b>Funding:</b> EUR #{conference.funding}." if conference.funding %>
 <% end %>
 
 
