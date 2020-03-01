@@ -93,7 +93,7 @@ GEM
       rake (>= 0.8.7)
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
-    rake (12.3.0)
+    rake (13.0.1)
     rb-fsevent (0.10.2)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
@@ -130,9 +130,6 @@ GEM
       execjs (>= 0.3.0, < 3)
     warden (1.2.7)
       rack (>= 1.0)
-    yaml_db (0.3.0)
-      rails (>= 3.0, < 4.3)
-      rake (>= 0.8.7)
 
 PLATFORMS
   ruby
@@ -151,7 +148,6 @@ DEPENDENCIES
   spreadsheet
   sqlite3
   uglifier (>= 1.0.3)
-  yaml_db
 
 BUNDLED WITH
    1.13.6
